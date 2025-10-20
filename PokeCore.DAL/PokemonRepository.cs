@@ -16,6 +16,11 @@ namespace PokeCore.DAL
             return JsonPersistenceHelper.Load<PokemonDTO>(FilePath);
         }
 
+        public PokemonDTO GetByID(int id)
+        {
+            return getAll().FirstOrDefault(p => p.Id == id);
+        }
+
         public List<PokemonDTO> GetByOwnerId(int ownerId)
         {
             return getAll().Where(p => p.OwnerId == ownerId).ToList();
@@ -39,7 +44,7 @@ namespace PokeCore.DAL
             List<PokemonDTO> pokemons = getAll();
             PokemonDTO existingPokemon = pokemons.FirstOrDefault(p => p.Id == pokemon.Id);
 
-            if (existingPokemon!= null)
+            if (existingPokemon != null)
             {
                 // Atualiza os dados do pokemon existente
                 existingPokemon.Nome = pokemon.Nome;
@@ -47,7 +52,9 @@ namespace PokeCore.DAL
                 existingPokemon.Nivel = pokemon.Nivel;
                 existingPokemon.OwnerId = pokemon.OwnerId;
                 existingPokemon.CapturedAt = pokemon.CapturedAt;
+                existingPokemon.LocalDeCaptura = pokemon.LocalDeCaptura;
                 existingPokemon.Nickname = pokemon.Nickname;
+                existingPokemon.isInActiveTeam = pokemon.isInActiveTeam;
 
                 JsonPersistenceHelper.Save(FilePath, pokemons);
             }
