@@ -27,6 +27,17 @@ public class TreinadorRepository
         return GetAll().FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
     }
 
+    public TreinadorDTO FindByLoginIdentifier(string identifier)
+    {
+        List<TreinadorDTO> users = GetAll();
+
+        return users.FirstOrDefault(u =>
+                                    u.Username.Equals(identifier, StringComparison.OrdinalIgnoreCase) ||
+                                    u.Email.Equals(identifier, StringComparison.OrdinalIgnoreCase) ||
+                                    u.DisplayName.Equals(identifier, StringComparison.OrdinalIgnoreCase)
+        );
+    }
+
     public void Add(TreinadorDTO user)
     {
         List<TreinadorDTO > users = GetAll();
@@ -51,7 +62,7 @@ public class TreinadorRepository
             existingUser.Username = user.Username;
             existingUser.Email = user.Email;
             existingUser.DisplayName = user.DisplayName;
-            existingUser.PasswordHash = user.PasswordHash;
+            existingUser.Password = user.Password;
             existingUser.IsAdmin = user.IsAdmin;
 
             JsonPersistenceHelper.Save(FilePath, users);
