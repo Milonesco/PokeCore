@@ -130,7 +130,7 @@
             txtUsuario.BorderColor = Color.Gray;
             txtUsuario.BorderRadius = 10;
             txtUsuario.CustomizableEdges = customizableEdges6;
-            txtUsuario.DefaultText = "";
+            txtUsuario.DefaultText = "milone";
             txtUsuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsuario.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtUsuario.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -153,7 +153,7 @@
             txtSenha.BorderColor = Color.Gray;
             txtSenha.BorderRadius = 10;
             txtSenha.CustomizableEdges = customizableEdges4;
-            txtSenha.DefaultText = "";
+            txtSenha.DefaultText = "M!lone954004";
             txtSenha.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtSenha.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtSenha.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -169,6 +169,7 @@
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges5;
             txtSenha.Size = new Size(440, 36);
             txtSenha.TabIndex = 3;
+            txtSenha.UseSystemPasswordChar = true;
             // 
             // btnEntrar
             // 
