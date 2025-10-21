@@ -32,6 +32,51 @@ namespace PokeCore
             AbrirUserControl(new ucHome(_treinadorLogado));
         }
 
+        private void btnPcBox_Click(object sender, EventArgs e)
+        {
+            panelConteudo.Controls.Clear();
+            AbrirUserControl(new ucPcBox());
+        }
+
+        private void btnEditarTime_Click(object sender, EventArgs e)
+        {
+            panelConteudo.Controls.Clear();
+            AbrirUserControl(new ucEditarTime());
+        }
+
+        private void btnEditarPokemon_Click(object sender, EventArgs e)
+        {
+            panelConteudo.Controls.Clear();
+            AbrirUserControl(new ucEditarPokemon());
+        }
+
+        private void btnTreinadores_Click(object sender, EventArgs e)
+        {
+            panelConteudo.Controls.Clear();
+            AbrirUserControl(new ucTreinadores());
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            var confirmacao = mdConfirma.Show("Você realmente deseja sair?");
+            if (confirmacao == DialogResult.Yes)
+            {
+                FecharMain();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
+
+        private void FecharMain()
+        {
+            Close();
+            frmLogin telaLogin = new();
+            telaLogin.ShowDialog();
+        }
 
 
         private void AtualizarUsuarioLogado()
@@ -92,7 +137,7 @@ namespace PokeCore
                         {
                             using (var bmpTemp = new Bitmap(fotoPadraoPath)) { pbUsuario.Image = new Bitmap(bmpTemp); }
                         }
-                        catch {}
+                        catch { }
                     }
                 }
             }
