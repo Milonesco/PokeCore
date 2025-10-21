@@ -35,7 +35,7 @@ namespace PokeCore
         private void btnPcBox_Click(object sender, EventArgs e)
         {
             panelConteudo.Controls.Clear();
-            AbrirUserControl(new ucPcBox());
+            AbrirUserControl(new ucPcBox(_treinadorLogado.Id));
         }
 
         private void btnEditarTime_Click(object sender, EventArgs e)
