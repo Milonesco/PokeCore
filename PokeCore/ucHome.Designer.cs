@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblBoasVindas = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblDataCriacao = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelTimeAtivo = new Guna.UI2.WinForms.Guna2ShadowPanel();
@@ -53,10 +53,10 @@
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblNomePokemon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelAdminStats = new Guna.UI2.WinForms.Guna2Panel();
-            lblAdminTotalTreinadores = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblAdminNovosTreinadores24h = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblAdminTotalPokemon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblAdminNovosPokemons24h = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblAdminTotalPokemon = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblAdminNovosTreinadores24h = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblAdminTotalTreinadores = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelTimeAtivo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbTime6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbTime5).BeginInit();
@@ -109,7 +109,7 @@
             pbTime6.ImageRotate = 0F;
             pbTime6.Location = new Point(542, 13);
             pbTime6.Name = "pbTime6";
-            pbTime6.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pbTime6.ShadowDecoration.CustomizableEdges = customizableEdges1;
             pbTime6.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime6.Size = new Size(100, 90);
             pbTime6.TabIndex = 0;
@@ -121,7 +121,7 @@
             pbTime5.ImageRotate = 0F;
             pbTime5.Location = new Point(436, 13);
             pbTime5.Name = "pbTime5";
-            pbTime5.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            pbTime5.ShadowDecoration.CustomizableEdges = customizableEdges2;
             pbTime5.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime5.Size = new Size(100, 90);
             pbTime5.TabIndex = 0;
@@ -133,7 +133,7 @@
             pbTime4.ImageRotate = 0F;
             pbTime4.Location = new Point(330, 13);
             pbTime4.Name = "pbTime4";
-            pbTime4.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            pbTime4.ShadowDecoration.CustomizableEdges = customizableEdges3;
             pbTime4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime4.Size = new Size(100, 90);
             pbTime4.TabIndex = 0;
@@ -145,7 +145,7 @@
             pbTime3.ImageRotate = 0F;
             pbTime3.Location = new Point(224, 13);
             pbTime3.Name = "pbTime3";
-            pbTime3.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            pbTime3.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pbTime3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime3.Size = new Size(100, 90);
             pbTime3.TabIndex = 0;
@@ -157,7 +157,7 @@
             pbTime2.ImageRotate = 0F;
             pbTime2.Location = new Point(118, 13);
             pbTime2.Name = "pbTime2";
-            pbTime2.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pbTime2.ShadowDecoration.CustomizableEdges = customizableEdges5;
             pbTime2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime2.Size = new Size(100, 90);
             pbTime2.TabIndex = 0;
@@ -169,7 +169,7 @@
             pbTime1.ImageRotate = 0F;
             pbTime1.Location = new Point(12, 13);
             pbTime1.Name = "pbTime1";
-            pbTime1.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            pbTime1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             pbTime1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbTime1.Size = new Size(100, 90);
             pbTime1.TabIndex = 0;
@@ -180,7 +180,7 @@
             pbUltimoPokemon.ImageRotate = 0F;
             pbUltimoPokemon.Location = new Point(994, 3);
             pbUltimoPokemon.Name = "pbUltimoPokemon";
-            pbUltimoPokemon.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pbUltimoPokemon.ShadowDecoration.CustomizableEdges = customizableEdges7;
             pbUltimoPokemon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbUltimoPokemon.Size = new Size(128, 128);
             pbUltimoPokemon.TabIndex = 3;
@@ -241,30 +241,22 @@
             panelAdminStats.Controls.Add(lblAdminTotalPokemon);
             panelAdminStats.Controls.Add(lblAdminNovosTreinadores24h);
             panelAdminStats.Controls.Add(lblAdminTotalTreinadores);
-            panelAdminStats.CustomizableEdges = customizableEdges17;
+            panelAdminStats.CustomizableEdges = customizableEdges8;
             panelAdminStats.Location = new Point(979, 214);
             panelAdminStats.Name = "panelAdminStats";
-            panelAdminStats.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            panelAdminStats.ShadowDecoration.CustomizableEdges = customizableEdges9;
             panelAdminStats.Size = new Size(152, 258);
             panelAdminStats.TabIndex = 8;
+            panelAdminStats.Visible = false;
             // 
-            // lblAdminTotalTreinadores
+            // lblAdminNovosPokemons24h
             // 
-            lblAdminTotalTreinadores.BackColor = Color.Transparent;
-            lblAdminTotalTreinadores.Location = new Point(3, 3);
-            lblAdminTotalTreinadores.Name = "lblAdminTotalTreinadores";
-            lblAdminTotalTreinadores.Size = new Size(112, 17);
-            lblAdminTotalTreinadores.TabIndex = 0;
-            lblAdminTotalTreinadores.Text = "Total de Treinadores:";
-            // 
-            // lblAdminNovosTreinadores24h
-            // 
-            lblAdminNovosTreinadores24h.BackColor = Color.Transparent;
-            lblAdminNovosTreinadores24h.Location = new Point(3, 65);
-            lblAdminNovosTreinadores24h.Name = "lblAdminNovosTreinadores24h";
-            lblAdminNovosTreinadores24h.Size = new Size(104, 17);
-            lblAdminNovosTreinadores24h.TabIndex = 0;
-            lblAdminNovosTreinadores24h.Text = "Novos Treinadores:";
+            lblAdminNovosPokemons24h.BackColor = Color.Transparent;
+            lblAdminNovosPokemons24h.Location = new Point(3, 186);
+            lblAdminNovosPokemons24h.Name = "lblAdminNovosPokemons24h";
+            lblAdminNovosPokemons24h.Size = new Size(99, 17);
+            lblAdminNovosPokemons24h.TabIndex = 0;
+            lblAdminNovosPokemons24h.Text = "Novos Pokemons:";
             // 
             // lblAdminTotalPokemon
             // 
@@ -275,14 +267,23 @@
             lblAdminTotalPokemon.TabIndex = 0;
             lblAdminTotalPokemon.Text = "Total de Pokemons:";
             // 
-            // lblAdminNovosPokemons24h
+            // lblAdminNovosTreinadores24h
             // 
-            lblAdminNovosPokemons24h.BackColor = Color.Transparent;
-            lblAdminNovosPokemons24h.Location = new Point(3, 186);
-            lblAdminNovosPokemons24h.Name = "lblAdminNovosPokemons24h";
-            lblAdminNovosPokemons24h.Size = new Size(99, 17);
-            lblAdminNovosPokemons24h.TabIndex = 0;
-            lblAdminNovosPokemons24h.Text = "Novos Pokemons:";
+            lblAdminNovosTreinadores24h.BackColor = Color.Transparent;
+            lblAdminNovosTreinadores24h.Location = new Point(3, 65);
+            lblAdminNovosTreinadores24h.Name = "lblAdminNovosTreinadores24h";
+            lblAdminNovosTreinadores24h.Size = new Size(104, 17);
+            lblAdminNovosTreinadores24h.TabIndex = 0;
+            lblAdminNovosTreinadores24h.Text = "Novos Treinadores:";
+            // 
+            // lblAdminTotalTreinadores
+            // 
+            lblAdminTotalTreinadores.BackColor = Color.Transparent;
+            lblAdminTotalTreinadores.Location = new Point(3, 3);
+            lblAdminTotalTreinadores.Name = "lblAdminTotalTreinadores";
+            lblAdminTotalTreinadores.Size = new Size(112, 17);
+            lblAdminTotalTreinadores.TabIndex = 0;
+            lblAdminTotalTreinadores.Text = "Total de Treinadores:";
             // 
             // ucHome
             // 
