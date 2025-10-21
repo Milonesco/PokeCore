@@ -49,5 +49,18 @@ namespace PokeCore.DesktopUI
                 formCadastro.ShowDialog();
             }
         }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+
+            this.MinimizeBox = true;
+
+        }
+
     }
 }
