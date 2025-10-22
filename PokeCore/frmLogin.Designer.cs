@@ -269,7 +269,7 @@
             guna2CirclePictureBox1.BackColor = Color.Transparent;
             guna2CirclePictureBox1.Enabled = false;
             guna2CirclePictureBox1.FillColor = SystemColors.WindowText;
-            guna2CirclePictureBox1.Image = Properties.Resources.poke_logo_colored;
+            guna2CirclePictureBox1.Image = Properties.Resources.poke_logo_colored1;
             guna2CirclePictureBox1.ImageRotate = 0F;
             guna2CirclePictureBox1.Location = new Point(182, 16);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
