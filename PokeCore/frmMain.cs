@@ -53,7 +53,7 @@ namespace PokeCore
         private void btnTreinadores_Click(object sender, EventArgs e)
         {
             panelConteudo.Controls.Clear();
-            AbrirUserControl(new ucTreinadores());
+            AbrirUserControl(new ucTreinadores(_treinadorLogado));
         }
 
         private void btnSair_Click(object sender, EventArgs e)
