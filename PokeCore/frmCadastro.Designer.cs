@@ -322,6 +322,7 @@
             Controls.Add(txtEmail);
             Controls.Add(txtNome);
             Controls.Add(guna2Panel1);
+            ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmCadastro";
             Text = "frmCadastro";
