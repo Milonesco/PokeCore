@@ -144,7 +144,42 @@ namespace PokeCore.BLL
             _treinadorRepository.Delete(idParaDeletar);
         }
 
-        public void MudarSenha(int treinadorId, string senhaAntiga, string senhaNova)
+        public void UpdateUserProfile(TreinadorDTO dadosAtualizados)
+        {
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.Username))
+                throw new ArgumentException("Nome de usuário é obrigatório.");
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.Email))
+                throw new ArgumentException("Email é obrigatório.");
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.DisplayName))
+                throw new ArgumentException("Nome de exibição é obrigatório.");
+
+            TreinadorDTO checkUsername = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Username); 
+            if (checkUsername != null && checkUsername.Id != dadosAtualizados.Id)
+            {
+                throw new Exception("Este nome de usuário já está em uso por outra conta.");
+            }
+
+            TreinadorDTO checkEmail = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Email); 
+            if (checkEmail != null && checkEmail.Id != dadosAtualizados.Id)
+            {
+                throw new Exception("Este e-mail já está em uso por outra conta.");
+            }
+
+            TreinadorDTO treinadorOriginal = _treinadorRepository.GetById(dadosAtualizados.Id);
+            if (treinadorOriginal == null)
+            {
+                throw new Exception("Usuário original não encontrado para atualização.");
+            }
+
+            treinadorOriginal.Username = dadosAtualizados.Username;
+            treinadorOriginal.DisplayName = dadosAtualizados.DisplayName;
+            treinadorOriginal.Email = dadosAtualizados.Email;
+            treinadorOriginal.FotoPath = dadosAtualizados.FotoPath;
+
+            _treinadorRepository.Update(treinadorOriginal);
+        }
+
+        public void ChangePassword(int treinadorId, string senhaAntiga, string senhaNova)
         {
             TreinadorDTO treinador = _treinadorRepository.GetById(treinadorId);
             if (treinador == null)
@@ -411,15 +446,11 @@ namespace PokeCore.BLL
 
         public TreinadorDTO GetTreinadorById(int id)
         {
-            if (id <= 0)
-            {
-                throw new ArgumentException("O ID do treinador fornecido é inválido.");
-            }
             TreinadorDTO treinador = _treinadorRepository.GetById(id);
 
             if (treinador == null)
             {
-                return null;
+                throw new Exception($"Treinador com ID {id} não encontrado.");
             }
 
             return treinador;
