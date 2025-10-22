@@ -27,6 +27,11 @@ public class TreinadorRepository
         return GetAll().FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
     }
 
+    public TreinadorDTO GetByEmail(string email)
+    {
+        return GetAll().FirstOrDefault(e => e.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+    }
+
     public TreinadorDTO FindByLoginIdentifier(string identifier)
     {
         List<TreinadorDTO> users = GetAll();
