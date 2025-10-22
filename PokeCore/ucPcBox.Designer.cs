@@ -58,6 +58,7 @@
             // flpPokemonGrid
             // 
             flpPokemonGrid.AutoScroll = true;
+            flpPokemonGrid.BackColor = Color.WhiteSmoke;
             flpPokemonGrid.Location = new Point(0, 0);
             flpPokemonGrid.Name = "flpPokemonGrid";
             flpPokemonGrid.Size = new Size(740, 650);
@@ -65,6 +66,8 @@
             // 
             // pnlPokemonDetails
             // 
+            pnlPokemonDetails.BackColor = Color.WhiteSmoke;
+            pnlPokemonDetails.BorderColor = Color.FromArgb(221, 23, 58);
             pnlPokemonDetails.Controls.Add(btnRelease);
             pnlPokemonDetails.Controls.Add(btnEditNickname);
             pnlPokemonDetails.Controls.Add(btnMoveToTeam);
@@ -77,6 +80,7 @@
             pnlPokemonDetails.Controls.Add(lblDetailName);
             pnlPokemonDetails.Controls.Add(pbDetailImage);
             pnlPokemonDetails.CustomizableEdges = customizableEdges8;
+            pnlPokemonDetails.ForeColor = Color.FromArgb(58, 58, 58);
             pnlPokemonDetails.Location = new Point(740, -1);
             pnlPokemonDetails.Name = "pnlPokemonDetails";
             pnlPokemonDetails.ShadowDecoration.CustomizableEdges = customizableEdges9;
@@ -86,12 +90,13 @@
             // 
             // btnRelease
             // 
+            btnRelease.BorderRadius = 6;
             btnRelease.CustomizableEdges = customizableEdges1;
             btnRelease.DisabledState.BorderColor = Color.DarkGray;
             btnRelease.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRelease.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnRelease.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRelease.FillColor = Color.FromArgb(255, 220, 37);
+            btnRelease.FillColor = Color.Gray;
             btnRelease.Font = new Font("Segoe UI", 9F);
             btnRelease.ForeColor = Color.White;
             btnRelease.Image = Properties.Resources.alert_whole;
@@ -120,6 +125,7 @@
             // 
             // btnMoveToTeam
             // 
+            btnMoveToTeam.BorderRadius = 6;
             btnMoveToTeam.CustomizableEdges = customizableEdges5;
             btnMoveToTeam.DisabledState.BorderColor = Color.DarkGray;
             btnMoveToTeam.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -142,6 +148,7 @@
             // 
             lblDetailLocation.BackColor = Color.Transparent;
             lblDetailLocation.Font = new Font("Segoe UI", 10F);
+            lblDetailLocation.ForeColor = Color.Gray;
             lblDetailLocation.Location = new Point(6, 566);
             lblDetailLocation.Name = "lblDetailLocation";
             lblDetailLocation.Size = new Size(102, 19);
@@ -152,6 +159,7 @@
             // 
             lblDetailCapturedDate.BackColor = Color.Transparent;
             lblDetailCapturedDate.Font = new Font("Segoe UI", 10F);
+            lblDetailCapturedDate.ForeColor = Color.Gray;
             lblDetailCapturedDate.Location = new Point(6, 629);
             lblDetailCapturedDate.Name = "lblDetailCapturedDate";
             lblDetailCapturedDate.Size = new Size(117, 19);
@@ -162,6 +170,7 @@
             // 
             lblDetailOwnerName.BackColor = Color.Transparent;
             lblDetailOwnerName.Font = new Font("Segoe UI", 10F);
+            lblDetailOwnerName.ForeColor = Color.Gray;
             lblDetailOwnerName.Location = new Point(6, 502);
             lblDetailOwnerName.Name = "lblDetailOwnerName";
             lblDetailOwnerName.Size = new Size(97, 19);
@@ -172,6 +181,7 @@
             // 
             lblDetailLevel.BackColor = Color.Transparent;
             lblDetailLevel.Font = new Font("Segoe UI", 14F);
+            lblDetailLevel.ForeColor = Color.FromArgb(221, 23, 58);
             lblDetailLevel.Location = new Point(310, 273);
             lblDetailLevel.Name = "lblDetailLevel";
             lblDetailLevel.Size = new Size(46, 27);
@@ -182,6 +192,7 @@
             // 
             lblDetailType.BackColor = Color.Transparent;
             lblDetailType.Font = new Font("Segoe UI", 14F);
+            lblDetailType.ForeColor = Color.FromArgb(58, 58, 58);
             lblDetailType.Location = new Point(6, 422);
             lblDetailType.Name = "lblDetailType";
             lblDetailType.Size = new Size(40, 27);
@@ -192,6 +203,7 @@
             // 
             lblDetailNickname.BackColor = Color.Transparent;
             lblDetailNickname.Font = new Font("Segoe UI", 18F);
+            lblDetailNickname.ForeColor = Color.FromArgb(58, 58, 58);
             lblDetailNickname.Location = new Point(6, 342);
             lblDetailNickname.Name = "lblDetailNickname";
             lblDetailNickname.Size = new Size(85, 34);
@@ -202,6 +214,7 @@
             // 
             lblDetailName.BackColor = Color.Transparent;
             lblDetailName.Font = new Font("Segoe UI", 18F);
+            lblDetailName.ForeColor = Color.FromArgb(58, 58, 58);
             lblDetailName.Location = new Point(6, 266);
             lblDetailName.Name = "lblDetailName";
             lblDetailName.Size = new Size(69, 34);
@@ -210,6 +223,7 @@
             // 
             // pbDetailImage
             // 
+            pbDetailImage.BackColor = Color.Transparent;
             pbDetailImage.ImageRotate = 0F;
             pbDetailImage.Location = new Point(84, 4);
             pbDetailImage.Name = "pbDetailImage";
@@ -224,6 +238,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(pnlPokemonDetails);
             Controls.Add(flpPokemonGrid);
             Name = "ucPcBox";
