@@ -10,6 +10,8 @@ namespace PokeCore.DesktopUI
     {
 
         public PokemonDTO PokemonData { get; private set; }
+        private PokemonDTO _pokemon;
+        public PokemonDTO pokemon { get { return _pokemon; } }
 
 
         private string spriteBasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "sprites");
@@ -18,6 +20,8 @@ namespace PokeCore.DesktopUI
         public ucPokemonIcon()
         {
             InitializeComponent();
+            _pokemon = pokemon;
+
             this.MouseEnter += (s, e) => this.BackColor = Color.LightGray;
             this.MouseLeave += (s, e) => this.BackColor = SystemColors.Control;
             pbPokemonSprite.MouseEnter += (s, e) => this.BackColor = Color.LightGray;
