@@ -219,7 +219,6 @@
             pbDetailImage.SizeMode = PictureBoxSizeMode.Zoom;
             pbDetailImage.TabIndex = 0;
             pbDetailImage.TabStop = false;
-            pbDetailImage.Visible = false;
             // 
             // ucPcBox
             // 
