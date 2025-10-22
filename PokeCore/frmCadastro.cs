@@ -59,15 +59,15 @@ namespace PokeCore.DesktopUI
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (txtSenha.Text != txtConfirmarSenha.Text) 
+            if (txtSenha.Text != txtConfirmarSenha.Text)
             {
                 MessageBox.Show("As senhas não coincidem!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
 
             try
             {
-                caminhoFotoSalva = null; 
+                caminhoFotoSalva = null;
                 if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
                 {
                     if (!Directory.Exists(diretorioFotos))
@@ -80,25 +80,22 @@ namespace PokeCore.DesktopUI
                     caminhoFotoSalva = Path.Combine(diretorioFotos, nomeArquivoUnico);
 
 
-                    pbFoto.Image.Save(caminhoFotoSalva, ImageFormat.Jpeg); // Ou ImageFormat.Png, etc.
-
-                    // Alternativa: Copiar o arquivo original (pode ser maior ou em formato diferente)
-                    // File.Copy(caminhoFotoSelecionadaOriginal, caminhoFotoSalva, true); // true = sobrescrever
+                    pbFoto.Image.Save(caminhoFotoSalva, ImageFormat.Jpeg);
                 }
 
 
                 _bll.Register(
-                    txtNome.Text, 
+                    txtNome.Text,
                     txtSenha.Text,
-                    txtEmail.Text, 
-                    txtDisplayName.Text, 
+                    txtEmail.Text,
+                    txtDisplayName.Text,
                     caminhoFotoSalva
                 );
 
                 // --- Sucesso ---
                 MessageBox.Show("Treinador registrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK; 
-                this.Close(); 
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (ArgumentException argEx)
             {
@@ -109,7 +106,7 @@ namespace PokeCore.DesktopUI
                 MessageBox.Show("Erro ao registrar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (!string.IsNullOrEmpty(caminhoFotoSalva) && File.Exists(caminhoFotoSalva))
                 {
-                    try { File.Delete(caminhoFotoSalva); } catch {}
+                    try { File.Delete(caminhoFotoSalva); } catch { }
                 }
             }
         }
