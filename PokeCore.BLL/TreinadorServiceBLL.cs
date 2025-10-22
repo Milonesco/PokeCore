@@ -408,6 +408,22 @@ namespace PokeCore.BLL
 
         // ### Métodos de Gerenciamento de Treinadores e Pokemon###
 
+
+        public TreinadorDTO GetTreinadorById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("O ID do treinador fornecido é inválido.");
+            }
+            TreinadorDTO treinador = _treinadorRepository.GetById(id);
+
+            if (treinador == null)
+            {
+                return null;
+            }
+
+            return treinador;
+        }
         public List<PokemonDTO> GetTreinadorActiveTeam(int treinadorId)
         {
             List<PokemonDTO> todosOsPokemon = _pokemonRepository.GetByOwnerId(treinadorId);
