@@ -9,13 +9,28 @@ namespace PokeCore
     public partial class frmMain : Form
     {
         private TreinadorDTO _treinadorLogado;
+        private List<Guna.UI2.WinForms.Guna2CircleButton> menuButtons;
         public frmMain(TreinadorDTO treinadorLogado)
         {
             InitializeComponent();
             _treinadorLogado = treinadorLogado;
 
+            menuButtons = new List<Guna.UI2.WinForms.Guna2CircleButton>
+            {
+                btnHome, btnPcBox, btnEditarTime, btnTreinadores
+            };
+
             AtualizarUsuarioLogado();
             AbrirUserControl(new ucHome(_treinadorLogado));
+        }
+
+        private void SetActiveButton(Guna.UI2.WinForms.Guna2CircleButton activeButton)
+        {
+            foreach (var button in menuButtons)
+            {
+                button.Checked = false;
+            }
+            activeButton.Checked = true;
         }
 
         private void AbrirUserControl(UserControl uc)
@@ -29,29 +44,46 @@ namespace PokeCore
 
         private void btnHome_Click(object sender, EventArgs e)
         {
+            SetActiveButton(btnHome);
             AbrirUserControl(new ucHome(_treinadorLogado));
         }
 
         private void btnPcBox_Click(object sender, EventArgs e)
         {
+            SetActiveButton(btnPcBox);
             panelConteudo.Controls.Clear();
             AbrirUserControl(new ucPcBox(_treinadorLogado.Id));
         }
 
         private void btnEditarTime_Click(object sender, EventArgs e)
         {
+            SetActiveButton(btnEditarTime);
             panelConteudo.Controls.Clear();
-            AbrirUserControl(new ucEditarTime());
+
+            ucEditarTime ucTime = new ucEditarTime(_treinadorLogado);
+            ucTime.Dock = DockStyle.Fill;
+            ucTime.OnEditarPokemonRequisitado += UcTime_OnEditarPokemonRequisitado;
+            panelConteudo.Controls.Add(ucTime);
         }
 
-        private void btnEditarPokemon_Click(object sender, EventArgs e)
+        private void UcTime_OnEditarPokemonRequisitado(PokemonDTO pokemonParaEditar)
         {
             panelConteudo.Controls.Clear();
-            AbrirUserControl(new ucEditarPokemon());
+
+            ucEditarPokemon ucEditPoke = new ucEditarPokemon(pokemonParaEditar, _treinadorLogado);
+            ucEditPoke.Dock = DockStyle.Fill;
+
+            ucEditPoke.OnEdicaoConcluida += () =>
+            {
+                btnEditarTime_Click(this, EventArgs.Empty);
+            };
+
+            panelConteudo.Controls.Add(ucEditPoke);
         }
 
         private void btnTreinadores_Click(object sender, EventArgs e)
         {
+            SetActiveButton(btnTreinadores);
             panelConteudo.Controls.Clear();
             AbrirUserControl(new ucTreinadores(_treinadorLogado));
         }
@@ -81,7 +113,7 @@ namespace PokeCore
 
         private void AtualizarUsuarioLogado()
         {
-            if (_treinadorLogado == null)
+            if (_treinadorLogado != null)
             {
                 lblDisplayName.Text = _treinadorLogado.DisplayName;
                 lblDisplayName.TextAlignment = ContentAlignment.MiddleCenter;
@@ -140,6 +172,25 @@ namespace PokeCore
                         catch { }
                     }
                 }
+            }
+        }
+
+        private void pbConfig_Click(object sender, EventArgs e)
+        { 
+            int idDoTreinador = this.idTreinadorLogado;
+
+            if (idDoTreinador > 0)
+            {
+                frmEditarPerfil frmEdicao = new frmEditarPerfil(idDoTreinador);
+                frmEdicao.ShowDialog();
+
+                TreinadorServiceBLL service = new TreinadorServiceBLL();
+                var treinadorAtualizado = service.GetTreinadorById(idDoTreinador);
+                lblDisplayName.Text = treinadorAtualizado.Username;
+            }
+            else
+            {
+                MessageBox.Show("Erro: Treinador não identificado para abrir as configurações.");
             }
         }
     }
