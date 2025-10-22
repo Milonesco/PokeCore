@@ -80,10 +80,10 @@ namespace PokeCore.BLL
                 DisplayName = displayName,
                 FotoPath = fotoPath,
                 Password = password,
-                IsAdmin = false 
+                IsAdmin = false
             };
 
-            _treinadorRepository.Add(novoTreinador); 
+            _treinadorRepository.Add(novoTreinador);
         }
 
 
@@ -260,6 +260,56 @@ namespace PokeCore.BLL
             _treinadorRepository.Delete(treinadorAlvoId);
         }
 
+        public void AdminUpdateTreinadorProfile(int adminExecutandoId, TreinadorDTO dadosAtualizados)
+        {
+            TreinadorDTO admin = _treinadorRepository.GetById(adminExecutandoId);
+            if (admin == null || !admin.IsAdmin)
+            {
+                throw new Exception("Acesso negado. Apenas administradores podem atualizar perfis.");
+            }
+
+            if (admin.Id == dadosAtualizados.Id && !dadosAtualizados.IsAdmin)
+            {
+                throw new Exception("Um administrador não pode remover o próprio status de admin através desta tela.");
+            }
+
+
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.Username))
+                throw new ArgumentException("Nome de usuário é obrigatório.");
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.Email))
+                throw new ArgumentException("Email é obrigatório.");
+            if (string.IsNullOrWhiteSpace(dadosAtualizados.DisplayName))
+                throw new ArgumentException("Nome de exibição é obrigatório.");
+
+
+            TreinadorDTO checkUsername = _treinadorRepository.GetByUsername(dadosAtualizados.Username);
+            if (checkUsername != null && checkUsername.Id != dadosAtualizados.Id)
+            {
+                throw new Exception("Este nome de usuário já está em uso por outra conta.");
+            }
+
+            TreinadorDTO checkEmail = _treinadorRepository.GetByEmail(dadosAtualizados.Email);
+            if (checkEmail != null && checkEmail.Id != dadosAtualizados.Id)
+            {
+                throw new Exception("Este e-mail já está em uso por outra conta.");
+            }
+
+            TreinadorDTO treinadorOriginal = _treinadorRepository.GetById(dadosAtualizados.Id);
+            if (treinadorOriginal == null)
+            {
+                throw new Exception("Treinador alvo não encontrado.");
+            }
+
+            treinadorOriginal.Username = dadosAtualizados.Username;
+            treinadorOriginal.DisplayName = dadosAtualizados.DisplayName;
+            treinadorOriginal.Email = dadosAtualizados.Email;
+            treinadorOriginal.IsAdmin = dadosAtualizados.IsAdmin;
+            treinadorOriginal.FotoPath = dadosAtualizados.FotoPath; 
+
+
+            _treinadorRepository.Update(treinadorOriginal);
+        }
+
         public void AdminReleasePokemon(int adminId, int pokemonId)
         {
             TreinadorDTO admin = _treinadorRepository.GetById(adminId);
@@ -282,19 +332,19 @@ namespace PokeCore.BLL
         {
             TreinadorDTO admin = _treinadorRepository.GetById(adminId);
 
-            if(admin == null || !admin.IsAdmin)
+            if (admin == null || !admin.IsAdmin)
             {
                 throw new Exception("Apenas administradores podem promover ou rebaixar outros treinadores");
             }
 
-            if(adminId == treinadorAlvoId)
+            if (adminId == treinadorAlvoId)
             {
                 throw new Exception("Administradores não podem alterar seu próprio status de administrador");
             }
 
             TreinadorDTO alvo = _treinadorRepository.GetById(treinadorAlvoId);
 
-            if(alvo == null)
+            if (alvo == null)
             {
                 throw new Exception("Treinador alvo não encontrado");
             }
@@ -349,6 +399,11 @@ namespace PokeCore.BLL
             return _pokemonRepository.getAll()
                        .Where(p => p.CapturedAt > DateTime.Now.AddDays(-1))
                        .Count();
+        }
+
+        public List<TreinadorDTO> GetAllTreinadores()
+        {
+            return _treinadorRepository.GetAll();
         }
 
         // ### Métodos de Gerenciamento de Treinadores e Pokemon###
