@@ -85,7 +85,8 @@
             guna2HtmlLabel1.Location = new Point(152, 192);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(184, 27);
-            guna2HtmlLabel1.TabIndex = 0;
+            guna2HtmlLabel1.TabIndex = 123123;
+            guna2HtmlLabel1.TabStop = false;
             guna2HtmlLabel1.Text = "Bem vindo, treinador!";
             // 
             // guna2HtmlLabel2
@@ -97,7 +98,8 @@
             guna2HtmlLabel2.Location = new Point(139, 150);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(208, 47);
-            guna2HtmlLabel2.TabIndex = 1;
+            guna2HtmlLabel2.TabIndex = 123123;
+            guna2HtmlLabel2.TabStop = false;
             guna2HtmlLabel2.Text = "Acessar conta";
             // 
             // guna2HtmlLabel3
@@ -109,7 +111,8 @@
             guna2HtmlLabel3.Location = new Point(27, 238);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             guna2HtmlLabel3.Size = new Size(132, 27);
-            guna2HtmlLabel3.TabIndex = 1;
+            guna2HtmlLabel3.TabIndex = 123123;
+            guna2HtmlLabel3.TabStop = false;
             guna2HtmlLabel3.Text = "Nome ou Email";
             // 
             // guna2HtmlLabel4
@@ -121,7 +124,8 @@
             guna2HtmlLabel4.Location = new Point(29, 344);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(55, 27);
-            guna2HtmlLabel4.TabIndex = 1;
+            guna2HtmlLabel4.TabIndex = 1123123;
+            guna2HtmlLabel4.TabStop = false;
             guna2HtmlLabel4.Text = "Senha";
             // 
             // txtUsuario
@@ -129,6 +133,7 @@
             txtUsuario.BackColor = Color.Transparent;
             txtUsuario.BorderColor = Color.Gray;
             txtUsuario.BorderRadius = 10;
+            txtUsuario.Cursor = Cursors.IBeam;
             txtUsuario.CustomizableEdges = customizableEdges6;
             txtUsuario.DefaultText = "milone";
             txtUsuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -136,7 +141,7 @@
             txtUsuario.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtUsuario.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtUsuario.FillColor = Color.FromArgb(31, 32, 36);
-            txtUsuario.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUsuario.FocusedState.BorderColor = Color.FromArgb(221, 23, 58);
             txtUsuario.Font = new Font("Segoe UI", 9F);
             txtUsuario.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUsuario.Location = new Point(27, 271);
@@ -145,13 +150,14 @@
             txtUsuario.SelectedText = "";
             txtUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
             txtUsuario.Size = new Size(440, 36);
-            txtUsuario.TabIndex = 3;
+            txtUsuario.TabIndex = 0;
             // 
             // txtSenha
             // 
             txtSenha.BackColor = Color.Transparent;
             txtSenha.BorderColor = Color.Gray;
             txtSenha.BorderRadius = 10;
+            txtSenha.Cursor = Cursors.IBeam;
             txtSenha.CustomizableEdges = customizableEdges4;
             txtSenha.DefaultText = "M!lone954004";
             txtSenha.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -159,7 +165,7 @@
             txtSenha.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtSenha.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtSenha.FillColor = Color.FromArgb(31, 32, 36);
-            txtSenha.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSenha.FocusedState.BorderColor = Color.FromArgb(221, 23, 58);
             txtSenha.Font = new Font("Segoe UI", 9F);
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSenha.Location = new Point(27, 377);
@@ -168,13 +174,14 @@
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges5;
             txtSenha.Size = new Size(440, 36);
-            txtSenha.TabIndex = 3;
+            txtSenha.TabIndex = 1;
             txtSenha.UseSystemPasswordChar = true;
             // 
             // btnEntrar
             // 
             btnEntrar.BackColor = Color.Transparent;
             btnEntrar.BorderRadius = 10;
+            btnEntrar.Cursor = Cursors.Hand;
             btnEntrar.CustomizableEdges = customizableEdges2;
             btnEntrar.DisabledState.BorderColor = Color.DarkGray;
             btnEntrar.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -183,11 +190,12 @@
             btnEntrar.FillColor = Color.FromArgb(221, 23, 58);
             btnEntrar.Font = new Font("Segoe UI", 9F);
             btnEntrar.ForeColor = Color.White;
+            btnEntrar.HoverState.FillColor = Color.FromArgb(255, 0, 47);
             btnEntrar.Location = new Point(27, 485);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnEntrar.Size = new Size(440, 45);
-            btnEntrar.TabIndex = 4;
+            btnEntrar.TabIndex = 3;
             btnEntrar.Text = "Entrar";
             btnEntrar.Click += btnEntrar_Click;
             // 
@@ -198,7 +206,7 @@
             lblEsqueceuSenha.Location = new Point(335, 419);
             lblEsqueceuSenha.Name = "lblEsqueceuSenha";
             lblEsqueceuSenha.Size = new Size(132, 23);
-            lblEsqueceuSenha.TabIndex = 0;
+            lblEsqueceuSenha.TabIndex = 2;
             lblEsqueceuSenha.Text = "<a href=\"#\" class=\"text-sm text-[#DD173A] hover:underline\">Esqueceu a senha?</a>\r\n";
             // 
             // lblCadastro
@@ -208,7 +216,7 @@
             lblCadastro.Location = new Point(137, 536);
             lblCadastro.Name = "lblCadastro";
             lblCadastro.Size = new Size(233, 70);
-            lblCadastro.TabIndex = 5;
+            lblCadastro.TabIndex = 4;
             lblCadastro.Text = "<p>Não tem uma conta? <a href=\"#\" class=\"font-medium text-[#DD173A] hover:underline\">Cadastre-se</a></p>";
             lblCadastro.Click += lblCadastro_Click;
             // 
@@ -222,6 +230,7 @@
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             guna2HtmlLabel7.Size = new Size(336, 23);
             guna2HtmlLabel7.TabIndex = 1;
+            guna2HtmlLabel7.TabStop = false;
             guna2HtmlLabel7.Text = "© 2025 PokeCore. Todos os direitos reservados.";
             // 
             // guna2HtmlLabel8
@@ -234,6 +243,7 @@
             guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             guna2HtmlLabel8.Size = new Size(406, 23);
             guna2HtmlLabel8.TabIndex = 1;
+            guna2HtmlLabel8.TabStop = false;
             guna2HtmlLabel8.Text = "© 2025 Pokemon Company. Todos os direitos reservados.";
             // 
             // guna2Elipse1
@@ -307,28 +317,32 @@
             btnMinimizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMinimizar.BorderRadius = 10;
             btnMinimizar.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
+            btnMinimizar.Cursor = Cursors.Hand;
             btnMinimizar.CustomizableEdges = customizableEdges10;
             btnMinimizar.FillColor = Color.FromArgb(225, 220, 37);
+            btnMinimizar.HoverState.FillColor = Color.FromArgb(255, 248, 39);
             btnMinimizar.IconColor = Color.White;
             btnMinimizar.Location = new Point(602, 15);
             btnMinimizar.Name = "btnMinimizar";
             btnMinimizar.ShadowDecoration.CustomizableEdges = customizableEdges11;
             btnMinimizar.Size = new Size(45, 29);
-            btnMinimizar.TabIndex = 0;
+            btnMinimizar.TabIndex = 5;
             btnMinimizar.Click += btnMinimizar_Click;
             // 
             // btnFechar
             // 
             btnFechar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnFechar.BorderRadius = 10;
+            btnFechar.Cursor = Cursors.Hand;
             btnFechar.CustomizableEdges = customizableEdges12;
             btnFechar.FillColor = Color.FromArgb(221, 23, 58);
+            btnFechar.HoverState.FillColor = Color.FromArgb(255, 0, 47);
             btnFechar.IconColor = Color.White;
             btnFechar.Location = new Point(653, 15);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnFechar.Size = new Size(45, 29);
-            btnFechar.TabIndex = 0;
+            btnFechar.TabIndex = 6;
             btnFechar.Click += btnFechar_Click;
             // 
             // gawAnimate
