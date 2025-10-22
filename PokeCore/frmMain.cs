@@ -8,12 +8,14 @@ namespace PokeCore
 {
     public partial class frmMain : Form
     {
+        private TreinadorServiceBLL _bll;
         private TreinadorDTO _treinadorLogado;
         private List<Guna.UI2.WinForms.Guna2CircleButton> menuButtons;
         public frmMain(TreinadorDTO treinadorLogado)
         {
             InitializeComponent();
             _treinadorLogado = treinadorLogado;
+            _bll = new TreinadorServiceBLL();
 
             menuButtons = new List<Guna.UI2.WinForms.Guna2CircleButton>
             {
@@ -176,21 +178,30 @@ namespace PokeCore
         }
 
         private void pbConfig_Click(object sender, EventArgs e)
-        { 
-            int idDoTreinador = this.idTreinadorLogado;
-
-            if (idDoTreinador > 0)
+        {
+            if (_treinadorLogado == null)
             {
-                frmEditarPerfil frmEdicao = new frmEditarPerfil(idDoTreinador);
-                frmEdicao.ShowDialog();
-
-                TreinadorServiceBLL service = new TreinadorServiceBLL();
-                var treinadorAtualizado = service.GetTreinadorById(idDoTreinador);
-                lblDisplayName.Text = treinadorAtualizado.Username;
+                MessageBox.Show("Não há usuário logado para editar o perfil.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+
+            using (frmEditarPerfil editarPerfil = new frmEditarPerfil(_treinadorLogado))
             {
-                MessageBox.Show("Erro: Treinador não identificado para abrir as configurações.");
+                DialogResult result = editarPerfil.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        _treinadorLogado = _bll.GetTreinadorById(_treinadorLogado.Id); 
+                        AtualizarUsuarioLogado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao recarregar dados do usuário após edição: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

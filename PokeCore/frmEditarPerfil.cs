@@ -6,70 +6,132 @@ namespace PokeCore.DesktopUI
 {
     public partial class frmEditarPerfil : Form
     {
-        private int _idTreinadorLogado;
+
+        private TreinadorServiceBLL _bll;
         private TreinadorDTO _treinadorAtual;
-        private TreinadorServiceBLL treinadorService = new TreinadorServiceBLL();
-        public frmEditarPerfil(int idTreinador)
+        private string diretorioFotos = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "fotos");
+        private string caminhoFotoSelecionadaOriginal = null;
+        private string caminhoFotoSalva = null;
+
+        public frmEditarPerfil(TreinadorDTO treinador)
         {
             InitializeComponent();
-            _idTreinadorLogado = idTreinador;
+            _bll = new TreinadorServiceBLL();
+            _treinadorAtual = treinador;
+            CarregarDados();
         }
-        private void frmEditarPerfil_Load(object sender, EventArgs e)
+
+        private void CarregarDados()
         {
+            if (_treinadorAtual == null)
+            {
+                MessageBox.Show("Dados do treinador não fornecidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            txtNome.Text = _treinadorAtual.Username;
+            txtEmail.Text = _treinadorAtual.Email;
+            txtDisplayName.Text = _treinadorAtual.DisplayName;
+
+            txtSenha.Text = string.Empty;
+            txtConfirmarSenha.Text = string.Empty;
+
+            CarregarFotoAtual();
+        }
+
+        private void CarregarFotoAtual()
+        {
+            string fotoPath = _treinadorAtual?.FotoPath;
+            string defaultFotoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "poke_logo_colored.png");
+
             try
             {
-                _treinadorAtual = treinadorService.GetTreinadorById(_idTreinadorLogado);
-
-                if (_treinadorAtual == null)
+                string caminhoParaCarregar = defaultFotoPath;
+                if (!string.IsNullOrWhiteSpace(fotoPath) && File.Exists(fotoPath))
                 {
-                    MessageBox.Show("Não foi possível carregar os dados do treinador.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
+                    caminhoParaCarregar = fotoPath;
+                }
+                else if (!File.Exists(defaultFotoPath))
+                {
+                    pbFoto.Image = null;
+                    Console.WriteLine($"AVISO frmEditarPerfil: Imagem padrão não encontrada em '{defaultFotoPath}'.");
                     return;
                 }
 
-                txtNome.Text = _treinadorAtual.Username;
-                txtEmail.Text = _treinadorAtual.Email;
-                txtDisplayName.Text = _treinadorAtual.DisplayName;
-
-                if (!string.IsNullOrEmpty(_treinadorAtual.FotoPath) && File.Exists(_treinadorAtual.FotoPath))
+                using (var bmpTemp = new Bitmap(caminhoParaCarregar))
                 {
-                    pbFoto.Image = Image.FromFile(_treinadorAtual.FotoPath);
-                }
-                else
-                {
-                    pbFoto.Image = Properties.Resources.poke_logo_colored;
+                    pbFoto.Image = new Bitmap(bmpTemp);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar perfil: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                Console.WriteLine($"Erro ao carregar foto '{fotoPath ?? defaultFotoPath}' no frmEditarPerfil: {ex.Message}");
+                pbFoto.Image = null;
+                try
+                {
+                    if (File.Exists(defaultFotoPath))
+                    {
+                        using (var bmpTemp = new Bitmap(defaultFotoPath)) { pbFoto.Image = new Bitmap(bmpTemp); }
+                    }
+                }
+                catch { }
             }
-
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            if (_treinadorAtual == null)
+            {
+                MessageBox.Show("Erro interno: Dados do treinador não disponíveis.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool mudarSenha = !string.IsNullOrWhiteSpace(txtSenha.Text) || !string.IsNullOrWhiteSpace(txtConfirmarSenha.Text);
+            if (mudarSenha)
+            {
+                if (txtSenha.Text != txtConfirmarSenha.Text)
+                {
+                    MessageBox.Show("As novas senhas não coincidem!", "Erro Senha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                try
+                {
+                    string senhaAntiga = txtSenhaAntiga.Text;
+                    _bll.ChangePassword(_treinadorAtual.Id, senhaAntiga, txtSenha.Text.Trim());
+                    mudarSenha = false;
+                }
+                catch (Exception exSenha)
+                {
+                    MessageBox.Show("Erro ao tentar validar/mudar a senha: " + exSenha.Message, "Erro Senha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             try
             {
-                if (!string.IsNullOrEmpty(txtSenha.Text))
-                {
-                    if (txtSenha.Text != txtConfirmarSenha.Text)
-                    {
-                        MessageBox.Show("As novas senhas não conferem!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    _treinadorAtual.Password = txtSenha.Text;
-                }
 
-                _treinadorAtual.Username = txtNome.Text;
-                _treinadorAtual.Email = txtEmail.Text;
-                _treinadorAtual.DisplayName = txtDisplayName.Text;
+                string fotoPathFinal = _treinadorAtual.FotoPath;
+                if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
+                _treinadorAtual.FotoPath = fotoPathFinal;
 
-                treinadorService.UpdateTreinador(_treinadorAtual);
+
+                _treinadorAtual.Username = txtNome.Text.Trim();
+                _treinadorAtual.Email = txtEmail.Text.Trim();
+                _treinadorAtual.DisplayName = txtDisplayName.Text.Trim();
+                _treinadorAtual.Password = txtConfirmarSenha.Text.Trim();
+
+
+                _bll.UpdateUserProfile(_treinadorAtual);
 
                 MessageBox.Show("Perfil atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show("Erro de validação: " + argEx.Message, "Dados Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
