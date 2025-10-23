@@ -104,5 +104,5 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE.txt](L
 
 ## 👥 Autores
 
-* **[Gabriel Milone Vieira]** - [[Seu GitHub/Contato Aqui](https://github.com/Milonesco)]
-* **[Raphaga Willian Alexandre Lopes Ferreira]** - [GitHub/Contato do Colega Aqui]
+* **[Gabriel Milone Vieira]** - [[Github](https://github.com/Milonesco)]
+* **[Raphaga Willian Alexandre Lopes Ferreira]** - [[GitHub](https://github.com/raphinhagameplaymaroto)]
