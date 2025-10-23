@@ -114,7 +114,7 @@ namespace PokeCore.DesktopUI
 
                 string fotoPathFinal = _treinadorAtual.FotoPath;
                 if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
-                _treinadorAtual.FotoPath = fotoPathFinal;
+                    _treinadorAtual.FotoPath = fotoPathFinal;
 
 
                 _treinadorAtual.Username = txtNome.Text.Trim();
@@ -137,6 +137,31 @@ namespace PokeCore.DesktopUI
             {
                 MessageBox.Show("Erro ao salvar alterações: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var confirmacao = mdConfirma.Show("Você realmente deseja sair?");
+            if (confirmacao == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.MinimizeBox = true;
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmMain telaMain = new(_treinadorAtual);
+            telaMain.ShowDialog();
         }
     }
 }

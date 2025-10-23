@@ -61,5 +61,13 @@ namespace PokeCore.DesktopUI
             this.MinimizeBox = true;
 
         }
+
+        private void lblEsqueceuSenha_Click(object sender, EventArgs e)
+        {
+            using (frmEsqueciSenha frmReset = new frmEsqueciSenha())
+            {
+                frmReset.ShowDialog();
+            }
+        }
     }
 }

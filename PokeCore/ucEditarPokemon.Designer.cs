@@ -173,7 +173,6 @@
             guna2Panel2.Controls.Add(guna2HtmlLabel4);
             guna2Panel2.CustomizableEdges = customizableEdges15;
             guna2Panel2.Dock = DockStyle.Right;
-            guna2Panel2.Enabled = false;
             guna2Panel2.FillColor = Color.White;
             guna2Panel2.ForeColor = SystemColors.ControlText;
             guna2Panel2.Location = new Point(396, 0);

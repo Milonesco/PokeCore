@@ -363,7 +363,7 @@ namespace PokeCore.BLL
             _pokemonRepository.Update(pokemon);
         }
 
-        public void PromoverParaAdmin(int adminId, int treinadorAlvoId, bool promover)
+        public void PromoteToAdmin(int adminId, int treinadorAlvoId, bool promover)
         {
             TreinadorDTO admin = _treinadorRepository.GetById(adminId);
 
@@ -436,6 +436,19 @@ namespace PokeCore.BLL
                        .Count();
         }
 
+        public bool ResetPasswordByAdmin(string usernameParaResetar, string novaSenha)
+        {
+            var treinador = _treinadorRepository.GetByUsername(usernameParaResetar);
+
+            if (treinador == null)
+            {
+                return false;
+            }
+
+            _treinadorRepository.Update(treinador);
+            return true;
+        }
+
         public List<TreinadorDTO> GetAllTreinadores()
         {
             return _treinadorRepository.GetAll();
@@ -480,7 +493,7 @@ namespace PokeCore.BLL
             return _pokemonRepository.GetByOwnerId(treinadorId).Count;
         }
 
-        public void MudarApelidoPokemon(int pokemonID, string novoApelido, int treinadorEditando)
+        public void ChangePokemonNickname(int pokemonID, string novoApelido, int treinadorEditando)
         {
             PokemonDTO pokemon = _pokemonRepository.GetByID(pokemonID);
 
@@ -510,7 +523,7 @@ namespace PokeCore.BLL
             _pokemonRepository.Update(pokemon);
         }
 
-        public void MudarLocalPokemon(int pokemonId, string novoLocal, int treinadorEditando)
+        public void ChangePokemonCaptureLocation(int pokemonId, string novoLocal, int treinadorEditando)
         {
             PokemonDTO pokemon = _pokemonRepository.GetByID(pokemonId);
 

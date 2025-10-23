@@ -55,7 +55,11 @@ namespace PokeCore.DesktopUI
 
             txtApelido.Text = _pokemon.Nickname;
             txtLocal.Text = _pokemon.LocalDeCaptura;
-            txtDataCaptura.Text = _pokemon.CapturedAt.ToString("dd/MM/yyyy 'às' HH:mm"); 
+            txtDataCaptura.Text = _pokemon.CapturedAt.ToString("dd/MM/yyyy 'às' HH:mm");
+
+
+            lblPokemonID.Left = lblNomePokemon.Left + (lblNomePokemon.Width - lblPokemonID.Width) / 2;
+            lblPokemonID.Top = lblNomePokemon.Bottom + 60;
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
@@ -65,8 +69,8 @@ namespace PokeCore.DesktopUI
                 string novoApelido = txtApelido.Text;
                 string novoLocal = txtLocal.Text;
 
-                _bll.MudarApelidoPokemon(_pokemon.Id, novoApelido, _treinadorLogado.Id);
-                _bll.MudarLocalPokemon(_pokemon.Id, novoLocal, _treinadorLogado.Id);
+                _bll.ChangePokemonNickname(_pokemon.Id, novoApelido, _treinadorLogado.Id);
+                _bll.ChangePokemonCaptureLocation(_pokemon.Id, novoLocal, _treinadorLogado.Id);
 
                 _pokemon.Nickname = novoApelido;
                 _pokemon.LocalDeCaptura = novoLocal;

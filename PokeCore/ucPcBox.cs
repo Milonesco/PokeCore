@@ -129,7 +129,7 @@ namespace PokeCore.DesktopUI
                 {
                     try
                     {
-                        _bll.TreinadorReleasePokemon(_treinadorId, _selectedPokemon.Id); // Ou AdminReleasePokemon se for admin
+                        _bll.TreinadorReleasePokemon(_treinadorId, _selectedPokemon.Id);
                         MessageBox.Show($"{_selectedPokemon.Nome} foi solto.");
                         LoadPcBox();
                         pnlPokemonDetails.Visible = false;
@@ -147,21 +147,36 @@ namespace PokeCore.DesktopUI
             if (_selectedPokemon != null)
             {
                 string novoApelido = Microsoft.VisualBasic.Interaction.InputBox("Digite o novo apelido:", "Editar Apelido", _selectedPokemon.Nickname ?? "");
-                if (!string.IsNullOrEmpty(novoApelido)) // Verifica se o usuário não cancelou
+                if (!string.IsNullOrEmpty(novoApelido))
                 {
                     try
                     {
-                        _bll.MudarApelidoPokemon(_selectedPokemon.Id, novoApelido, _treinadorId);
+                        _bll.ChangePokemonNickname(_selectedPokemon.Id, novoApelido, _treinadorId);
                         MessageBox.Show("Apelido atualizado!");
-                        // Atualiza o DTO local e os detalhes exibidos
                         _selectedPokemon.Nickname = novoApelido;
                         DisplayPokemonDetails(_selectedPokemon);
-                        // Não precisa recarregar a box inteira, só atualizar os detalhes
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                }
+            }
+        }
+
+        public void PesquisarPokemon(string termo)
+        {
+            foreach (Control ctrl in flpPokemonGrid.Controls)
+            {
+                if (ctrl is ucPokemonIcon icon)
+                {
+                    bool corresponde = false;
+                    if (icon.PokemonData != null)
+                    {
+                        corresponde = (icon.PokemonData.Nome?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                      (icon.PokemonData.Nickname?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                    icon.Visible = corresponde;
                 }
             }
         }

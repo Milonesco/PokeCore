@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -39,18 +40,18 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             panelMenu = new Guna.UI2.WinForms.Guna2Panel();
             pbUsuario = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            pbConfig = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             btnSair = new Guna.UI2.WinForms.Guna2Button();
             btnTreinadores = new Guna.UI2.WinForms.Guna2CircleButton();
             lblTreinadores = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -63,19 +64,19 @@
             btnHome = new Guna.UI2.WinForms.Guna2CircleButton();
             lblEditarPokemon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnEditarPokemon = new Guna.UI2.WinForms.Guna2CircleButton();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            pbLogo = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            panelTitle = new Guna.UI2.WinForms.Guna2Panel();
+            guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             txtPesquisa = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            pbConfig = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             panelConteudo = new Guna.UI2.WinForms.Guna2Panel();
             mdConfirma = new Guna.UI2.WinForms.Guna2MessageDialog();
+            guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbUsuario).BeginInit();
-            guna2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbConfig).BeginInit();
+            panelTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
             panelConteudo.SuspendLayout();
             SuspendLayout();
             // 
@@ -90,6 +91,7 @@
             panelMenu.BackColor = Color.FromArgb(31, 32, 36);
             panelMenu.Controls.Add(pbUsuario);
             panelMenu.Controls.Add(guna2Separator1);
+            panelMenu.Controls.Add(pbConfig);
             panelMenu.Controls.Add(btnSair);
             panelMenu.Controls.Add(btnTreinadores);
             panelMenu.Controls.Add(lblTreinadores);
@@ -114,7 +116,7 @@
             pbUsuario.ImageRotate = 0F;
             pbUsuario.Location = new Point(33, 17);
             pbUsuario.Name = "pbUsuario";
-            pbUsuario.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pbUsuario.ShadowDecoration.CustomizableEdges = customizableEdges9;
             pbUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbUsuario.Size = new Size(128, 128);
             pbUsuario.TabIndex = 5;
@@ -127,6 +129,22 @@
             guna2Separator1.Name = "guna2Separator1";
             guna2Separator1.Size = new Size(200, 10);
             guna2Separator1.TabIndex = 4;
+            // 
+            // pbConfig
+            // 
+            pbConfig.BackColor = Color.Transparent;
+            pbConfig.Cursor = Cursors.Hand;
+            pbConfig.Image = DesktopUI.Properties.Resources.configuracao;
+            pbConfig.ImageRotate = 0F;
+            pbConfig.Location = new Point(159, 12);
+            pbConfig.Name = "pbConfig";
+            pbConfig.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pbConfig.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            pbConfig.Size = new Size(32, 32);
+            pbConfig.SizeMode = PictureBoxSizeMode.Zoom;
+            pbConfig.TabIndex = 2;
+            pbConfig.TabStop = false;
+            pbConfig.Click += pbConfig_Click;
             // 
             // btnSair
             // 
@@ -163,7 +181,7 @@
             btnTreinadores.HoverState.ForeColor = Color.White;
             btnTreinadores.Image = DesktopUI.Properties.Resources.game;
             btnTreinadores.ImageSize = new Size(40, 40);
-            btnTreinadores.Location = new Point(62, 550);
+            btnTreinadores.Location = new Point(58, 582);
             btnTreinadores.Name = "btnTreinadores";
             btnTreinadores.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnTreinadores.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -177,7 +195,7 @@
             lblTreinadores.Enabled = false;
             lblTreinadores.Font = new Font("Segoe UI", 10F);
             lblTreinadores.ForeColor = Color.White;
-            lblTreinadores.Location = new Point(58, 620);
+            lblTreinadores.Location = new Point(54, 652);
             lblTreinadores.Name = "lblTreinadores";
             lblTreinadores.Size = new Size(73, 19);
             lblTreinadores.TabIndex = 3;
@@ -202,7 +220,7 @@
             lblEditarTime.Enabled = false;
             lblEditarTime.Font = new Font("Segoe UI", 10F);
             lblEditarTime.ForeColor = Color.White;
-            lblEditarTime.Location = new Point(62, 512);
+            lblEditarTime.Location = new Point(58, 544);
             lblEditarTime.Name = "lblEditarTime";
             lblEditarTime.Size = new Size(69, 19);
             lblEditarTime.TabIndex = 3;
@@ -215,7 +233,7 @@
             lblPcBox.Enabled = false;
             lblPcBox.Font = new Font("Segoe UI", 10F);
             lblPcBox.ForeColor = Color.White;
-            lblPcBox.Location = new Point(73, 408);
+            lblPcBox.Location = new Point(69, 440);
             lblPcBox.Name = "lblPcBox";
             lblPcBox.Size = new Size(43, 19);
             lblPcBox.TabIndex = 3;
@@ -228,7 +246,7 @@
             lblHome.Enabled = false;
             lblHome.Font = new Font("Segoe UI", 10F);
             lblHome.ForeColor = Color.White;
-            lblHome.Location = new Point(77, 306);
+            lblHome.Location = new Point(73, 338);
             lblHome.Name = "lblHome";
             lblHome.Size = new Size(38, 19);
             lblHome.TabIndex = 3;
@@ -251,7 +269,7 @@
             btnEditarTime.HoverState.ForeColor = Color.White;
             btnEditarTime.Image = DesktopUI.Properties.Resources.pen;
             btnEditarTime.ImageSize = new Size(40, 40);
-            btnEditarTime.Location = new Point(62, 442);
+            btnEditarTime.Location = new Point(58, 474);
             btnEditarTime.Name = "btnEditarTime";
             btnEditarTime.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnEditarTime.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -275,7 +293,7 @@
             btnPcBox.HoverState.ForeColor = Color.White;
             btnPcBox.Image = DesktopUI.Properties.Resources.computer;
             btnPcBox.ImageSize = new Size(40, 40);
-            btnPcBox.Location = new Point(62, 338);
+            btnPcBox.Location = new Point(58, 370);
             btnPcBox.Name = "btnPcBox";
             btnPcBox.ShadowDecoration.CustomizableEdges = customizableEdges15;
             btnPcBox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -299,7 +317,7 @@
             btnHome.HoverState.ForeColor = Color.White;
             btnHome.Image = DesktopUI.Properties.Resources.home;
             btnHome.ImageSize = new Size(40, 40);
-            btnHome.Location = new Point(62, 236);
+            btnHome.Location = new Point(58, 268);
             btnHome.Name = "btnHome";
             btnHome.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnHome.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -335,52 +353,68 @@
             btnEditarPokemon.TabStop = false;
             btnEditarPokemon.Visible = false;
             // 
-            // guna2Panel2
+            // panelTitle
             // 
-            guna2Panel2.Controls.Add(pbLogo);
-            guna2Panel2.Controls.Add(txtPesquisa);
-            guna2Panel2.Controls.Add(guna2HtmlLabel3);
-            guna2Panel2.Controls.Add(guna2HtmlLabel2);
-            guna2Panel2.Controls.Add(pbConfig);
-            guna2Panel2.CustomizableEdges = customizableEdges8;
-            guna2Panel2.Dock = DockStyle.Top;
-            guna2Panel2.Location = new Point(200, 0);
-            guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            guna2Panel2.Size = new Size(1166, 100);
-            guna2Panel2.TabIndex = 1;
+            panelTitle.Controls.Add(guna2CirclePictureBox1);
+            panelTitle.Controls.Add(guna2HtmlLabel1);
+            panelTitle.Controls.Add(txtPesquisa);
+            panelTitle.Controls.Add(guna2HtmlLabel3);
+            panelTitle.CustomizableEdges = customizableEdges7;
+            panelTitle.Dock = DockStyle.Top;
+            panelTitle.Location = new Point(200, 0);
+            panelTitle.Name = "panelTitle";
+            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            panelTitle.Size = new Size(1166, 100);
+            panelTitle.TabIndex = 1;
             // 
-            // pbLogo
+            // guna2CirclePictureBox1
             // 
-            pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(1090, 17);
-            pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            pbLogo.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            pbLogo.Size = new Size(64, 64);
-            pbLogo.TabIndex = 5;
-            pbLogo.TabStop = false;
+            guna2CirclePictureBox1.Enabled = false;
+            guna2CirclePictureBox1.ErrorImage = null;
+            guna2CirclePictureBox1.Image = DesktopUI.Properties.Resources.poke_logo_colored;
+            guna2CirclePictureBox1.ImageRotate = 0F;
+            guna2CirclePictureBox1.Location = new Point(13, 20);
+            guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
+            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            guna2CirclePictureBox1.Size = new Size(64, 64);
+            guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            guna2CirclePictureBox1.TabIndex = 10;
+            guna2CirclePictureBox1.TabStop = false;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Enabled = false;
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 28F);
+            guna2HtmlLabel1.Location = new Point(83, 25);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(160, 52);
+            guna2HtmlLabel1.TabIndex = 9;
+            guna2HtmlLabel1.Text = "PokeCore";
             // 
             // txtPesquisa
             // 
-            txtPesquisa.BorderRadius = 20;
+            txtPesquisa.BorderRadius = 15;
+            txtPesquisa.Cursor = Cursors.IBeam;
             txtPesquisa.CustomizableEdges = customizableEdges5;
             txtPesquisa.DefaultText = "";
             txtPesquisa.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPesquisa.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtPesquisa.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtPesquisa.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtPesquisa.FillColor = Color.Gray;
             txtPesquisa.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPesquisa.Font = new Font("Segoe UI", 9F);
             txtPesquisa.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPesquisa.Location = new Point(27, 29);
+            txtPesquisa.Location = new Point(391, 29);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "Pesquisa";
             txtPesquisa.SelectedText = "";
             txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtPesquisa.Size = new Size(600, 36);
             txtPesquisa.TabIndex = 4;
+            txtPesquisa.Visible = false;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // guna2HtmlLabel3
             // 
@@ -390,27 +424,6 @@
             guna2HtmlLabel3.Size = new Size(3, 2);
             guna2HtmlLabel3.TabIndex = 3;
             guna2HtmlLabel3.Text = null;
-            // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Location = new Point(966, 42);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(80, 17);
-            guna2HtmlLabel2.TabIndex = 3;
-            guna2HtmlLabel2.Text = "Configurações";
-            // 
-            // pbConfig
-            // 
-            pbConfig.ImageRotate = 0F;
-            pbConfig.Location = new Point(1052, 33);
-            pbConfig.Name = "pbConfig";
-            pbConfig.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            pbConfig.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            pbConfig.Size = new Size(32, 32);
-            pbConfig.TabIndex = 2;
-            pbConfig.TabStop = false;
-            pbConfig.Click += pbConfig_Click;
             // 
             // panelConteudo
             // 
@@ -429,8 +442,14 @@
             mdConfirma.Caption = "Confirmar saida";
             mdConfirma.Icon = Guna.UI2.WinForms.MessageDialogIcon.Question;
             mdConfirma.Parent = this;
-            mdConfirma.Style = Guna.UI2.WinForms.MessageDialogStyle.Light;
+            mdConfirma.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
             mdConfirma.Text = null;
+            // 
+            // guna2DragControl1
+            // 
+            guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            guna2DragControl1.TargetControl = panelTitle;
+            guna2DragControl1.UseTransparentDrag = true;
             // 
             // frmMain
             // 
@@ -439,7 +458,7 @@
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1366, 768);
             Controls.Add(panelConteudo);
-            Controls.Add(guna2Panel2);
+            Controls.Add(panelTitle);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmMain";
@@ -447,10 +466,10 @@
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbUsuario).EndInit();
-            guna2Panel2.ResumeLayout(false);
-            guna2Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbConfig).EndInit();
+            panelTitle.ResumeLayout(false);
+            panelTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             panelConteudo.ResumeLayout(false);
             panelConteudo.PerformLayout();
             ResumeLayout(false);
@@ -459,8 +478,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2Panel panelTitle;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDisplayName;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbConfig;
         private Guna.UI2.WinForms.Guna2Panel panelMenu;
@@ -480,7 +498,9 @@
         private Guna.UI2.WinForms.Guna2Panel panelConteudo;
         private Guna.UI2.WinForms.Guna2MessageDialog mdConfirma;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox pbLogo;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbUsuario;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
     }
 }

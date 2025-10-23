@@ -397,5 +397,25 @@ namespace PokeCore.DesktopUI
                 }
             }
         }
+
+        public void PesquisarTreinador(string termo)
+        {
+            CurrencyManager currencyManager = (CurrencyManager)BindingContext[dgvTreinadores.DataSource];
+            currencyManager.SuspendBinding();
+
+            foreach (DataGridViewRow row in dgvTreinadores.Rows)
+            {
+                bool visivel = false;
+                if (row.DataBoundItem is TreinadorDTO treinador)
+                {
+                    visivel = (treinador.Username?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                              (treinador.DisplayName?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                              (treinador.Email?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+                row.Visible = visivel;
+            }
+
+            currencyManager.ResumeBinding();
+        }
     }
 }

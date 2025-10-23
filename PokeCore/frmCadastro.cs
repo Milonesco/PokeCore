@@ -110,6 +110,16 @@ namespace PokeCore.DesktopUI
                 }
             }
         }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.MinimizeBox = true;
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

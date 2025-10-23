@@ -65,9 +65,10 @@
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             txtSenhaAntiga = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            mdConfirma = new Guna.UI2.WinForms.Guna2MessageDialog();
             ((System.ComponentModel.ISupportInitialize)pbFoto).BeginInit();
             SuspendLayout();
             // 
@@ -307,23 +308,24 @@
             guna2Panel1.Size = new Size(84, 561);
             guna2Panel1.TabIndex = 5;
             // 
-            // guna2Button1
+            // btnCancelar
             // 
-            guna2Button1.BorderRadius = 10;
-            guna2Button1.CustomizableEdges = customizableEdges1;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.FromArgb(221, 23, 58);
-            guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(592, 496);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2Button1.Size = new Size(180, 45);
-            guna2Button1.TabIndex = 19;
-            guna2Button1.Text = "Cancelar";
+            btnCancelar.BorderRadius = 10;
+            btnCancelar.CustomizableEdges = customizableEdges1;
+            btnCancelar.DisabledState.BorderColor = Color.DarkGray;
+            btnCancelar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCancelar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCancelar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCancelar.FillColor = Color.FromArgb(221, 23, 58);
+            btnCancelar.Font = new Font("Segoe UI", 9F);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(592, 496);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnCancelar.Size = new Size(180, 45);
+            btnCancelar.TabIndex = 19;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtSenhaAntiga
             // 
@@ -358,13 +360,22 @@
             guna2HtmlLabel1.TabIndex = 13;
             guna2HtmlLabel1.Text = "Senha antiga";
             // 
+            // mdConfirma
+            // 
+            mdConfirma.Buttons = Guna.UI2.WinForms.MessageDialogButtons.YesNo;
+            mdConfirma.Caption = "Você tem certeza?";
+            mdConfirma.Icon = Guna.UI2.WinForms.MessageDialogIcon.Question;
+            mdConfirma.Parent = this;
+            mdConfirma.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
+            mdConfirma.Text = null;
+            // 
             // frmEditarPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(31, 32, 36);
             ClientSize = new Size(784, 561);
-            Controls.Add(guna2Button1);
+            Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(pbFoto);
             Controls.Add(guna2HtmlLabel4);
@@ -408,8 +419,9 @@
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnCancelar;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2TextBox txtSenhaAntiga;
+        private Guna.UI2.WinForms.Guna2MessageDialog mdConfirma;
     }
 }

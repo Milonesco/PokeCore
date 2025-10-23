@@ -10,12 +10,14 @@ namespace PokeCore
     {
         private TreinadorServiceBLL _bll;
         private TreinadorDTO _treinadorLogado;
+        private bool isTreinadorAdmin;
         private List<Guna.UI2.WinForms.Guna2CircleButton> menuButtons;
         public frmMain(TreinadorDTO treinadorLogado)
         {
             InitializeComponent();
             _treinadorLogado = treinadorLogado;
             _bll = new TreinadorServiceBLL();
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
 
             menuButtons = new List<Guna.UI2.WinForms.Guna2CircleButton>
             {
@@ -42,6 +44,24 @@ namespace PokeCore
             uc.Dock = DockStyle.Fill;
 
             panelConteudo.Controls.Add(uc);
+
+            if (uc is ucPcBox || uc is ucEditarTime || uc is ucTreinadores)
+            {
+                txtPesquisa.Visible = true;
+                txtPesquisa.Clear();
+                if (uc is ucTreinadores)
+                {
+                    txtPesquisa.PlaceholderText = "Pesquisar Treinador...";
+                }
+                else
+                {
+                    txtPesquisa.PlaceholderText = "Pesquisar Pokémon...";
+                }
+            }
+            else
+            {
+                txtPesquisa.Visible = false;
+            }
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -123,6 +143,11 @@ namespace PokeCore
                 string fotoPath = _treinadorLogado.FotoPath;
                 string fotoPadraoPath = "img/poke_logo_colored.png";
 
+
+                lblDisplayName.Left = pbUsuario.Left + (pbUsuario.Width - lblDisplayName.Width) / 2;
+
+                lblDisplayName.Top = pbUsuario.Bottom + 4;
+
                 try
                 {
                     string caminhoParaCarregar = fotoPadraoPath;
@@ -174,6 +199,9 @@ namespace PokeCore
                         catch { }
                     }
                 }
+
+                btnTreinadores.Visible = _treinadorLogado.IsAdmin;
+                lblTreinadores.Visible = _treinadorLogado.IsAdmin;
             }
         }
 
@@ -194,13 +222,46 @@ namespace PokeCore
                 {
                     try
                     {
-                        _treinadorLogado = _bll.GetTreinadorById(_treinadorLogado.Id); 
+                        _treinadorLogado = _bll.GetTreinadorById(_treinadorLogado.Id);
                         AtualizarUsuarioLogado();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Erro ao recarregar dados do usuário após edição: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.MinimizeBox = true;
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            string termoPesquisa = txtPesquisa.Text.Trim();
+
+            if (panelConteudo.Controls.Count > 0)
+            {
+                Control activeControl = panelConteudo.Controls[0];
+
+                if (activeControl is ucPcBox ucPc)
+                {
+                    ucPc.PesquisarPokemon(termoPesquisa); 
+                }
+                else if (activeControl is ucEditarTime ucTime)
+                {
+                    ucTime.PesquisarPokemon(termoPesquisa); 
+                }
+                else if (activeControl is ucTreinadores ucTrainers)
+                {
+                    ucTrainers.PesquisarTreinador(termoPesquisa);
                 }
             }
         }

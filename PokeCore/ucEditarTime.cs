@@ -73,9 +73,6 @@ namespace PokeCore.DesktopUI
             {
                 _pokemonSelecionado = clickedIcon.PokemonData;
 
-                // (Opcional: adicione lógica no ucPokemonIcon para ele "brilhar"
-                // e chame um método aqui para limpar o brilho dos outros)
-
                 AtualizarPainelAcoes();
             }
         }
@@ -175,6 +172,37 @@ namespace PokeCore.DesktopUI
             _pokemonSelecionado = null;
             CarregarTimes();
             AtualizarPainelAcoes();
+        }
+
+        public void PesquisarPokemon(string termo)
+        {
+            foreach (Control ctrl in flpActiveTeam.Controls)
+            {
+                if (ctrl is ucPokemonIcon icon)
+                {
+                    bool corresponde = false;
+                    if (icon.PokemonData != null)
+                    {
+                        corresponde = (icon.PokemonData.Nome?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                      (icon.PokemonData.Nickname?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                    icon.Visible = corresponde;
+                }
+            }
+
+            foreach (Control ctrl in flpPcBox.Controls)
+            {
+                if (ctrl is ucPokemonIcon icon)
+                {
+                    bool corresponde = false;
+                    if (icon.PokemonData != null)
+                    {
+                        corresponde = (icon.PokemonData.Nome?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                      (icon.PokemonData.Nickname?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                    icon.Visible = corresponde;
+                }
+            }
         }
     }
 }
