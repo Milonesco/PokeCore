@@ -107,8 +107,10 @@
             pbFoto.Name = "pbFoto";
             pbFoto.ShadowDecoration.CustomizableEdges = customizableEdges6;
             pbFoto.Size = new Size(235, 166);
+            pbFoto.SizeMode = PictureBoxSizeMode.Zoom;
             pbFoto.TabIndex = 18;
             pbFoto.TabStop = false;
+            pbFoto.Click += pbFoto_Click;
             // 
             // guna2HtmlLabel4
             // 

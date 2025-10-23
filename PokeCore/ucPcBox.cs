@@ -1,10 +1,5 @@
 ﻿using PokeCore.BLL;
 using PokeCore.DTO;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.IO; 
-using System.Drawing;
 
 namespace PokeCore.DesktopUI
 {
@@ -83,7 +78,7 @@ namespace PokeCore.DesktopUI
                     using (var bmpTemp = new Bitmap(pathToShow)) { pbDetailImage.Image = new Bitmap(bmpTemp); }
                 }
             }
-            catch {pbDetailImage.Image = null; }
+            catch { pbDetailImage.Image = null; }
 
             lblDetailName.Text = pokemon.Nome;
             lblDetailLevel.Text = "Nível: " + pokemon.Nivel.ToString();

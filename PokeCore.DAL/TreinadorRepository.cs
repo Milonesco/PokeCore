@@ -1,4 +1,4 @@
-﻿using PokeCore.DTO;
+using PokeCore.DTO;
 
 public class TreinadorRepository
 {
@@ -45,7 +45,7 @@ public class TreinadorRepository
 
     public void Add(TreinadorDTO user)
     {
-        List<TreinadorDTO > users = GetAll();
+        List<TreinadorDTO> users = GetAll();
 
         // Lógica simples de auto-incremento do ID
         user.Id = users.Any() ? users.Max(u => u.Id) + 1 : 1;
@@ -58,7 +58,7 @@ public class TreinadorRepository
 
     public void Update(TreinadorDTO user)
     {
-        List<TreinadorDTO > users = GetAll();
+        List<TreinadorDTO> users = GetAll();
         TreinadorDTO existingUser = users.FirstOrDefault(u => u.Id == user.Id);
 
         if (existingUser != null)
@@ -69,6 +69,7 @@ public class TreinadorRepository
             existingUser.DisplayName = user.DisplayName;
             existingUser.Password = user.Password;
             existingUser.IsAdmin = user.IsAdmin;
+            existingUser.FotoPath = user.FotoPath;
 
             JsonPersistenceHelper.Save(FilePath, users);
         }

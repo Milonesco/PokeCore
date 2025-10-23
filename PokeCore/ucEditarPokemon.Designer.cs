@@ -235,9 +235,10 @@
             txtDataCaptura.CustomizableEdges = customizableEdges9;
             txtDataCaptura.DefaultText = "";
             txtDataCaptura.DisabledState.BorderColor = Color.FromArgb(224, 224, 224);
-            txtDataCaptura.DisabledState.FillColor = Color.WhiteSmoke;
-            txtDataCaptura.DisabledState.ForeColor = Color.Gray;
+            txtDataCaptura.DisabledState.FillColor = Color.White;
+            txtDataCaptura.DisabledState.ForeColor = Color.Black;
             txtDataCaptura.DisabledState.PlaceholderForeColor = Color.Gray;
+            txtDataCaptura.Enabled = false;
             txtDataCaptura.FocusedState.BorderColor = Color.FromArgb(221, 23, 58);
             txtDataCaptura.Font = new Font("Segoe UI", 9F);
             txtDataCaptura.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
@@ -399,6 +400,7 @@
             pbPokemonImage.ShadowDecoration.CustomizableEdges = customizableEdges17;
             pbPokemonImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbPokemonImage.Size = new Size(256, 256);
+            pbPokemonImage.SizeMode = PictureBoxSizeMode.Zoom;
             pbPokemonImage.TabIndex = 0;
             pbPokemonImage.TabStop = false;
             // 

@@ -12,6 +12,11 @@ namespace PokeCore.DesktopUI
         public PokemonDTO PokemonData { get; private set; }
         private PokemonDTO _pokemon;
         public PokemonDTO pokemon { get { return _pokemon; } }
+        public bool ShowNameLabel
+        {
+            get { return lblNomeIcone.Visible; }
+            set { lblNomeIcone.Visible = value; }
+        }
 
 
         private string spriteBasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "sprites");
@@ -20,17 +25,26 @@ namespace PokeCore.DesktopUI
         public ucPokemonIcon()
         {
             InitializeComponent();
-            _pokemon = pokemon;
+            CenterLabelUnderSprite();
 
             this.MouseEnter += (s, e) => this.BackColor = Color.LightGray;
-            this.MouseLeave += (s, e) => this.BackColor = SystemColors.Control;
+            this.MouseLeave += (s, e) => this.BackColor = Color.Transparent;
             pbPokemonSprite.MouseEnter += (s, e) => this.BackColor = Color.LightGray;
-            pbPokemonSprite.MouseLeave += (s, e) => this.BackColor = SystemColors.Control;
+            pbPokemonSprite.MouseLeave += (s, e) => this.BackColor = Color.Transparent;
         }
 
         public void SetPokemon(PokemonDTO pokemon)
         {
             PokemonData = pokemon;
+            if (PokemonData != null)
+            {
+                lblNomeIcone.Text = !string.IsNullOrEmpty(PokemonData.Nickname) ? PokemonData.Nickname : PokemonData.Nome;
+                CenterLabelUnderSprite();
+            }
+            else
+            {
+                lblNomeIcone.Text = "";
+            }
             LoadPokemonSprite();
         }
 
@@ -98,6 +112,12 @@ namespace PokeCore.DesktopUI
         private void pbPokemonSprite_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
+        }
+
+        private void CenterLabelUnderSprite(int verticalSpacing = 2)
+        {
+            lblNomeIcone.Left = pbPokemonSprite.Left + (pbPokemonSprite.Width - lblNomeIcone.Width) / 2;
+            lblNomeIcone.Top = pbPokemonSprite.Bottom + verticalSpacing;
         }
     }
 }

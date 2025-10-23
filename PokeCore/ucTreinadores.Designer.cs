@@ -133,6 +133,7 @@
             dgvTreinadores.ThemeStyle.RowsStyle.Height = 25;
             dgvTreinadores.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvTreinadores.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvTreinadores.CellDoubleClick += dgvTreinadores_CellDoubleClick;
             dgvTreinadores.SelectionChanged += dgvTreinadores_SelectionChanged;
             // 
             // btnCadastrar

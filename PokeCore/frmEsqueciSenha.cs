@@ -17,6 +17,7 @@ namespace PokeCore.DesktopUI
             pnlReset.Enabled = false;
         }
 
+
         private void btnLogarAdmin_Click(object sender, EventArgs e)
         {
             string adminUser = txtAdminUser.Text;
@@ -28,17 +29,42 @@ namespace PokeCore.DesktopUI
                 return;
             }
 
-            var admin = _treinadorService.(adminUser, adminPass);
-
-            if (admin != null && admin.IsAdmin)
+            try
             {
-                MessageBox.Show("Admin autenticado. Prossiga com o reset.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var admin = _treinadorService.Login(adminUser, adminPass);
 
-                pnlReset.Enabled = true;
+                if (admin != null && admin.IsAdmin)
+                {
+                    MessageBox.Show("Admin autenticado. Prossiga com o reset.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    pnlReset.Visible = true;
+                    pnlReset.Enabled = true;
+                    pnlLoginAdmin.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Credenciais de admin inválidas ou usuário não é admin.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void btnCancelarAdmin_Click(object sender, EventArgs e)
+        {
+            var confirmacao = mdConfirma.Show("Você realmente deseja sair?");
+            if (confirmacao == DialogResult.Yes)
+            {
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Credenciais de admin inválidas ou usuário não é admin.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -87,6 +113,19 @@ namespace PokeCore.DesktopUI
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocorreu um erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var confirmacao = mdConfirma.Show("Você realmente deseja sair?");
+            if (confirmacao == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                return;
             }
         }
     }

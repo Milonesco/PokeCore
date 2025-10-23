@@ -1,10 +1,5 @@
-﻿using PokeCore.BLL;
+using PokeCore.BLL;
 using PokeCore.DTO;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
 
 namespace PokeCore.DesktopUI
 {

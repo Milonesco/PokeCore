@@ -1,13 +1,5 @@
 ﻿using PokeCore.BLL;
-using PokeCore.DTO;
-using System;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace PokeCore.DesktopUI
 {

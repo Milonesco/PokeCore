@@ -1,4 +1,4 @@
-﻿using PokeCore.BLL;
+using PokeCore.BLL;
 using PokeCore.DTO;
 using System;
 using System.Drawing;
@@ -10,8 +10,9 @@ namespace PokeCore.DesktopUI
     public partial class ucEditarPokemon : UserControl
     {
         private PokemonDTO _pokemon;
-        private TreinadorDTO _treinadorLogado;
         private TreinadorServiceBLL _bll;
+        private PokemonServiceBLL _pokemonBLL;
+        private TreinadorDTO _treinadorLogado;
 
         public event Action OnEdicaoConcluida;
 
@@ -24,16 +25,17 @@ namespace PokeCore.DesktopUI
             InitializeComponent();
         }
 
-        public ucEditarPokemon(PokemonDTO pokemonParaEditar, TreinadorDTO treinadorLogado)
+        public ucEditarPokemon(PokemonDTO pokemon, TreinadorDTO treinadorLogado, TreinadorServiceBLL bll, PokemonServiceBLL pokemonBLL)
         {
             InitializeComponent();
-            _pokemon = pokemonParaEditar;
+            _pokemon = pokemon;
             _treinadorLogado = treinadorLogado;
-            _bll = new TreinadorServiceBLL();
+            _bll = bll;
+            _pokemonBLL = pokemonBLL;
 
             this.Load += UcEditarPokemon_Load;
             this.btnSalvar.Click += BtnSalvar_Click;
-            this.btnVoltar.Click += BtnVoltar_Click; 
+            this.btnVoltar.Click += BtnVoltar_Click;
         }
 
         private void UcEditarPokemon_Load(object sender, EventArgs e)
@@ -50,36 +52,40 @@ namespace PokeCore.DesktopUI
             lblNomePokemon.Text = _pokemon.Nome;
             chipNivel.Text = $"Nível: {_pokemon.Nivel}";
             chipTipo.Text = _pokemon.Tipo;
-            lblPokemonID.Text = $"ID: {_pokemon.Id}"; 
+            lblPokemonID.Text = $"ID do Pokémon: {_pokemon.Id}";
 
 
             txtApelido.Text = _pokemon.Nickname;
             txtLocal.Text = _pokemon.LocalDeCaptura;
             txtDataCaptura.Text = _pokemon.CapturedAt.ToString("dd/MM/yyyy 'às' HH:mm");
 
+            lblNomePokemon.Text = _pokemon.Nome;
+            lblNomePokemon.Parent.PerformLayout();
+            lblNomePokemon.Left = pnlPokemonImage.Left + (pnlPokemonImage.Width - lblNomePokemon.Width) / 2;
+            lblNomePokemon.Top = pnlPokemonImage.Bottom + 4;
 
-            lblPokemonID.Left = lblNomePokemon.Left + (lblNomePokemon.Width - lblPokemonID.Width) / 2;
-            lblPokemonID.Top = lblNomePokemon.Bottom + 60;
+            lblPokemonID.Parent.PerformLayout();
+            lblPokemonID.Left = pnlPokemonImage.Left + (pnlPokemonImage.Width - lblPokemonID.Width) / 2;
+            lblPokemonID.Top = chipNivel.Bottom + 4;
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                string novoApelido = txtApelido.Text;
-                string novoLocal = txtLocal.Text;
+                _pokemon.Nickname = txtApelido.Text.Trim();
+                _pokemon.LocalDeCaptura = txtLocal.Text.Trim();
 
-                _bll.ChangePokemonNickname(_pokemon.Id, novoApelido, _treinadorLogado.Id);
-                _bll.ChangePokemonCaptureLocation(_pokemon.Id, novoLocal, _treinadorLogado.Id);
+                _pokemonBLL.AdminUpdatePokemon(_treinadorLogado.Id, _pokemon);
 
-                _pokemon.Nickname = novoApelido;
-                _pokemon.LocalDeCaptura = novoLocal;
+                MessageBox.Show("Pokémon atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show("Pokémon atualizado com sucesso!", "Salvo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frmMain mainForm = this.ParentForm as frmMain;
+                mainForm?.AbrirGerenciarPokemons();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao salvar Pokémon: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -1,6 +1,6 @@
-﻿using PokeCore.BLL;
+using System.Drawing.Imaging;
+using PokeCore.BLL;
 using PokeCore.DTO;
-using System.IO;
 
 namespace PokeCore.DesktopUI
 {
@@ -12,12 +12,15 @@ namespace PokeCore.DesktopUI
         private string diretorioFotos = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "fotos");
         private string caminhoFotoSelecionadaOriginal = null;
         private string caminhoFotoSalva = null;
+        private string caminhoFotoRelativo = null;
 
         public frmEditarPerfil(TreinadorDTO treinador)
         {
             InitializeComponent();
             _bll = new TreinadorServiceBLL();
             _treinadorAtual = treinador;
+            diretorioFotos = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "fotos");
+
             CarregarDados();
         }
 
@@ -72,39 +75,93 @@ namespace PokeCore.DesktopUI
                 {
                     if (File.Exists(defaultFotoPath))
                     {
-                        using (var bmpTemp = new Bitmap(defaultFotoPath)) { pbFoto.Image = new Bitmap(bmpTemp); }
+                        using (var bmpTemp = new Bitmap(defaultFotoPath))
+                        { pbFoto.Image = new Bitmap(bmpTemp); }
                     }
                 }
                 catch { }
             }
         }
 
+        private void pbFoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+                openFileDialog.Filter = "Arquivos de Imagem (*.jpg; *.jpeg; *.png; *.gif; *.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Selecione uma nova foto de perfil";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        caminhoFotoSelecionadaOriginal = openFileDialog.FileName;
+
+                        Image oldImage = pbFoto.Image;
+                        using (var bmpTemp = new Bitmap(caminhoFotoSelecionadaOriginal))
+                        {
+                            pbFoto.Image = new Bitmap(bmpTemp);
+                        }
+                        oldImage?.Dispose();
+
+                        caminhoFotoSalva = null;
+                        caminhoFotoRelativo = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao carregar a imagem: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        caminhoFotoSelecionadaOriginal = null;
+                        CarregarFotoAtual();
+                    }
+                }
+            }
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
-            if (_treinadorAtual == null)
+            if (string.IsNullOrWhiteSpace(txtNome.Text) ||
+                string.IsNullOrWhiteSpace(txtDisplayName.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Erro interno: Dados do treinador não disponíveis.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Todos os campos (exceto senha) são obrigatórios.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            bool mudarSenha = !string.IsNullOrWhiteSpace(txtSenha.Text) || !string.IsNullOrWhiteSpace(txtConfirmarSenha.Text);
-            if (mudarSenha)
+            // --- Lógica da Foto ---
+            string fotoPathParaSalvar = _treinadorAtual.FotoPath;
+            string caminhoAntigoAbsoluto = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _treinadorAtual.FotoPath ?? "");
+            bool fotoNovaSalvaComSucesso = false;
+
+
+            if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
             {
-                if (txtSenha.Text != txtConfirmarSenha.Text)
-                {
-                    MessageBox.Show("As novas senhas não coincidem!", "Erro Senha", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 try
                 {
-                    string senhaAntiga = txtSenhaAntiga.Text;
-                    _bll.ChangePassword(_treinadorAtual.Id, senhaAntiga, txtSenha.Text.Trim());
-                    mudarSenha = false;
+                    if (!Directory.Exists(diretorioFotos))
+                    {
+                        Directory.CreateDirectory(diretorioFotos);
+                    }
+
+                    string extensao = Path.GetExtension(caminhoFotoSelecionadaOriginal);
+                    string nomeArquivoUnico = $"{Guid.NewGuid()}{extensao}";
+
+                    caminhoFotoRelativo = Path.Combine("data", "fotos", nomeArquivoUnico);
+
+                    caminhoFotoSalva = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, caminhoFotoRelativo);
+
+                    using (Bitmap bmpOriginal = new Bitmap(caminhoFotoSelecionadaOriginal))
+                    {
+                        ImageFormat formato = extensao.ToLower() == ".png" ? ImageFormat.Png : ImageFormat.Jpeg;
+                        bmpOriginal.Save(caminhoFotoSalva, formato);
+                    }
+
+                    fotoPathParaSalvar = caminhoFotoRelativo;
+                    fotoNovaSalvaComSucesso = true;
+
                 }
-                catch (Exception exSenha)
+                catch (Exception exSave)
                 {
-                    MessageBox.Show("Erro ao tentar validar/mudar a senha: " + exSenha.Message, "Erro Senha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro ao salvar a nova imagem: {exSave.Message}", "Erro de Imagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -112,30 +169,102 @@ namespace PokeCore.DesktopUI
             try
             {
 
-                string fotoPathFinal = _treinadorAtual.FotoPath;
-                if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
-                    _treinadorAtual.FotoPath = fotoPathFinal;
+                var dadosAtualizados = new TreinadorDTO
+                {
+                    Id = _treinadorAtual.Id,
+                    Username = txtNome.Text.Trim(),
+                    DisplayName = txtDisplayName.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
+                    FotoPath = fotoPathParaSalvar,
+                    IsAdmin = _treinadorAtual.IsAdmin,
+                    Password = _treinadorAtual.Password
+                };
 
+                _bll.UpdateUserProfile(dadosAtualizados);
 
-                _treinadorAtual.Username = txtNome.Text.Trim();
-                _treinadorAtual.Email = txtEmail.Text.Trim();
-                _treinadorAtual.DisplayName = txtDisplayName.Text.Trim();
-                _treinadorAtual.Password = txtConfirmarSenha.Text.Trim();
+                if (fotoNovaSalvaComSucesso &&
+                    !string.IsNullOrEmpty(_treinadorAtual.FotoPath) &&
+                    _treinadorAtual.FotoPath != fotoPathParaSalvar &&
+                    File.Exists(caminhoAntigoAbsoluto) &&
+                    !caminhoAntigoAbsoluto.Contains("poke_logo_colored.png"))
+                {
+                    try
+                    {
+                        Image imgAntigaPb = pbFoto.Image;
+                        pbFoto.Image = null;
+                        imgAntigaPb?.Dispose();
 
+                        File.Delete(caminhoAntigoAbsoluto);
 
-                _bll.UpdateUserProfile(_treinadorAtual);
+                        if (!string.IsNullOrEmpty(caminhoFotoSalva) && File.Exists(caminhoFotoSalva))
+                        {
+                            using (FileStream fs = new FileStream(caminhoFotoSalva, FileMode.Open, FileAccess.Read))
+                            {
+                                pbFoto.Image = Image.FromStream(fs);
+                            }
+                        }
+
+                    }
+                    catch (IOException ioEx)
+                    {
+                        Console.WriteLine($"Aviso: Não foi possível deletar a foto antiga '{caminhoAntigoAbsoluto}'. Pode estar em uso. Erro: {ioEx.Message}");
+                    }
+                    catch (Exception exDel)
+                    {
+                        Console.WriteLine($"Erro ao deletar foto antiga: {exDel.Message}");
+                    }
+                }
+
+                _treinadorAtual.Username = dadosAtualizados.Username;
+                _treinadorAtual.DisplayName = dadosAtualizados.DisplayName;
+                _treinadorAtual.Email = dadosAtualizados.Email;
+                _treinadorAtual.FotoPath = dadosAtualizados.FotoPath;
+
+                frmMain mainForm = Application.OpenForms.OfType<frmMain>().FirstOrDefault();
+                mainForm?.AtualizarDadosUsuarioLogado(_treinadorAtual); // (Você precisaria criar este método no frmMain)
 
                 MessageBox.Show("Perfil atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show("Erro de validação: " + argEx.Message, "Dados Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro de validação: " + argEx.Message, "Atualização Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ReverterSalvamentoFotoNova(fotoPathParaSalvar);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar alterações: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao atualizar perfil: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ReverterSalvamentoFotoNova(fotoPathParaSalvar);
+            }
+        }
+
+        private void ReverterSalvamentoFotoNova(string novoFotoPathRelativo)
+        {
+            string caminhoNovoAbsoluto = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, novoFotoPathRelativo ?? "");
+            string caminhoAntigoRelativo = _treinadorAtual.FotoPath;
+
+            if (!string.IsNullOrEmpty(novoFotoPathRelativo) &&
+                novoFotoPathRelativo != caminhoAntigoRelativo &&
+                File.Exists(caminhoNovoAbsoluto))
+            {
+                try
+                {
+                    Image imgPb = pbFoto.Image;
+                    pbFoto.Image = null;
+                    imgPb?.Dispose();
+
+                    File.Delete(caminhoNovoAbsoluto);
+                    Console.WriteLine($"Nova foto '{caminhoNovoAbsoluto}' revertida devido a erro.");
+
+                    CarregarFotoAtual();
+
+                }
+                catch (Exception exRev)
+                {
+                    Console.WriteLine($"Erro ao reverter salvamento da foto: {exRev.Message}");
+                }
             }
         }
 
@@ -150,18 +279,6 @@ namespace PokeCore.DesktopUI
             {
                 return;
             }
-        }
-
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            this.MinimizeBox = true;
-        }
-
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            frmMain telaMain = new(_treinadorAtual);
-            telaMain.ShowDialog();
         }
     }
 }

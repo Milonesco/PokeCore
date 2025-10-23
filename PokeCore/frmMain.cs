@@ -1,14 +1,13 @@
-using PokeCore.DesktopUI;
 using PokeCore.BLL;
+using PokeCore.DesktopUI;
 using PokeCore.DTO;
-using System.Drawing;
-using System.IO;
 
 namespace PokeCore
 {
     public partial class frmMain : Form
     {
         private TreinadorServiceBLL _bll;
+        private PokemonServiceBLL _pokemonBLL;
         private TreinadorDTO _treinadorLogado;
         private bool isTreinadorAdmin;
         private List<Guna.UI2.WinForms.Guna2CircleButton> menuButtons;
@@ -17,6 +16,7 @@ namespace PokeCore
             InitializeComponent();
             _treinadorLogado = treinadorLogado;
             _bll = new TreinadorServiceBLL();
+            _pokemonBLL = new PokemonServiceBLL();
             this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
 
             menuButtons = new List<Guna.UI2.WinForms.Guna2CircleButton>
@@ -55,7 +55,7 @@ namespace PokeCore
                 }
                 else
                 {
-                    txtPesquisa.PlaceholderText = "Pesquisar PokÈmon...";
+                    txtPesquisa.PlaceholderText = "Pesquisar Pok√©mon...";
                 }
             }
             else
@@ -92,7 +92,7 @@ namespace PokeCore
         {
             panelConteudo.Controls.Clear();
 
-            ucEditarPokemon ucEditPoke = new ucEditarPokemon(pokemonParaEditar, _treinadorLogado);
+            ucEditarPokemon ucEditPoke = new ucEditarPokemon(pokemonParaEditar, _treinadorLogado, _bll, _pokemonBLL);
             ucEditPoke.Dock = DockStyle.Fill;
 
             ucEditPoke.OnEdicaoConcluida += () =>
@@ -112,7 +112,7 @@ namespace PokeCore
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            var confirmacao = mdConfirma.Show("VocÍ realmente deseja sair?");
+            var confirmacao = mdConfirma.Show("Voc√™ realmente deseja sair?");
             if (confirmacao == DialogResult.Yes)
             {
                 FecharMain();
@@ -158,7 +158,7 @@ namespace PokeCore
                     }
                     else if (!File.Exists(caminhoParaCarregar))
                     {
-                        MessageBox.Show($"Aviso: A imagem padr„o n„o foi encontrada em {fotoPadraoPath}");
+                        MessageBox.Show($"Aviso: A imagem padr√£o n√£o foi encontrada em {fotoPadraoPath}");
                         pbUsuario.Image = null;
                         return;
                     }
@@ -170,18 +170,19 @@ namespace PokeCore
                 }
                 catch (FileNotFoundException)
                 {
-                    MessageBox.Show($"Erro: N„o foi possÌvel encontrar o arquivo de imagem em '{fotoPath ?? fotoPadraoPath}'. Verifique o caminho.", "Erro ao Carregar Imagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro: N√£o foi poss√≠vel encontrar o arquivo de imagem em '{fotoPath ?? fotoPadraoPath}'. Verifique o caminho.", "Erro ao Carregar Imagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     pbUsuario.Image = null;
                 }
                 catch (OutOfMemoryException)
                 {
-                    MessageBox.Show($"Erro: O arquivo de imagem em '{fotoPath ?? fotoPadraoPath}' parece ser inv·lido ou corrompido.", "Erro ao Carregar Imagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro: O arquivo de imagem em '{fotoPath ?? fotoPadraoPath}' parece ser inv√°lido ou corrompido.", "Erro ao Carregar Imagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     pbUsuario.Image = null;
                     if (!string.IsNullOrWhiteSpace(fotoPath) && File.Exists(fotoPadraoPath))
                     {
                         try
                         {
-                            using (var bmpTemp = new Bitmap(fotoPadraoPath)) { pbUsuario.Image = new Bitmap(bmpTemp); }
+                            using (var bmpTemp = new Bitmap(fotoPadraoPath))
+                            { pbUsuario.Image = new Bitmap(bmpTemp); }
                         }
                         catch { }
                     }
@@ -194,7 +195,8 @@ namespace PokeCore
                     {
                         try
                         {
-                            using (var bmpTemp = new Bitmap(fotoPadraoPath)) { pbUsuario.Image = new Bitmap(bmpTemp); }
+                            using (var bmpTemp = new Bitmap(fotoPadraoPath))
+                            { pbUsuario.Image = new Bitmap(bmpTemp); }
                         }
                         catch { }
                     }
@@ -209,7 +211,7 @@ namespace PokeCore
         {
             if (_treinadorLogado == null)
             {
-                MessageBox.Show("N„o h· usu·rio logado para editar o perfil.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("N√£o h√° usu√°rio logado para editar o perfil.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -227,7 +229,7 @@ namespace PokeCore
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Erro ao recarregar dados do usu·rio apÛs ediÁ„o: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Erro ao recarregar dados do usu√°rio ap√≥s edi√ß√£o: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -253,17 +255,130 @@ namespace PokeCore
 
                 if (activeControl is ucPcBox ucPc)
                 {
-                    ucPc.PesquisarPokemon(termoPesquisa); 
+                    ucPc.PesquisarPokemon(termoPesquisa);
                 }
                 else if (activeControl is ucEditarTime ucTime)
                 {
-                    ucTime.PesquisarPokemon(termoPesquisa); 
+                    ucTime.PesquisarPokemon(termoPesquisa);
+                }
+                else if (activeControl is ucGerenciarPokemons ucPokes)
+                {
+                    ucPokes.PesquisarPokemon(termoPesquisa);
                 }
                 else if (activeControl is ucTreinadores ucTrainers)
                 {
                     ucTrainers.PesquisarTreinador(termoPesquisa);
                 }
             }
+        }
+
+        public void AbrirGerenciadorTreinador(TreinadorDTO adminLogado, TreinadorDTO treinadorAlvo)
+        {
+            ucAdminGerenciarTreinador ucGerenciar = new ucAdminGerenciarTreinador(_bll, adminLogado, treinadorAlvo);
+
+            AbrirUserControl(ucGerenciar);
+        }
+
+        public void AbrirUcTreinadores()
+        {
+            ucTreinadores uc = new ucTreinadores(_treinadorLogado);
+            AbrirUserControl(uc);
+        }
+
+        public void AtualizarDadosUsuarioLogado(TreinadorDTO treinadorAtualizado)
+        {
+            _treinadorLogado = treinadorAtualizado;
+
+            lblDisplayName.Text = _treinadorLogado.DisplayName ?? _treinadorLogado.Username;
+
+            CarregarFotoPerfilPrincipal();
+            CenterLabelUnderPictureBox(lblDisplayName, pbUsuario);
+        }
+
+        private void CarregarFotoPerfilPrincipal()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string fotoPathCompleto = Path.Combine(basePath, _treinadorLogado.FotoPath ?? "");
+
+
+            Image oldImage = pbUsuario.Image;
+            pbUsuario.Image = null;
+            oldImage?.Dispose();
+
+            if (!string.IsNullOrEmpty(_treinadorLogado.FotoPath) && File.Exists(fotoPathCompleto))
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(fotoPathCompleto, FileMode.Open, FileAccess.Read))
+                    {
+                        pbUsuario.Image = Image.FromStream(fs);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao carregar foto principal: {ex.Message}");
+                    string fotoPadraoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img/poke_logo_colored.png");
+                    if (File.Exists(fotoPadraoPath))
+                    {
+                        using (var bmpTemp = new Bitmap(fotoPadraoPath))
+                        {
+                            pbUsuario.Image = new Bitmap(bmpTemp);
+                        }
+                    }
+                    else
+                    {
+                        pbUsuario.Image = null;
+                    }
+                }
+            }
+            else
+            {
+                string fotoPadraoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img/poke_logo_colored.png");
+                if (File.Exists(fotoPadraoPath))
+                {
+                    using (var bmpTemp = new Bitmap(fotoPadraoPath))
+                    {
+                        pbUsuario.Image = new Bitmap(bmpTemp);
+                    }
+                }
+                else
+                {
+                    pbUsuario.Image = null;
+                }
+            }
+        }
+
+        private void CenterLabelUnderPictureBox(Control label, Control pictureBox, int verticalSpacing = 4)
+        {
+            if (label == null || pictureBox == null || label.Parent == null)
+                return;
+
+            label.Parent.PerformLayout();
+
+            label.Left = pictureBox.Left + (pictureBox.Width - label.Width) / 2;
+            label.Top = pictureBox.Bottom + verticalSpacing;
+        }
+
+        private void btnGerenciarPokemon_Click(object sender, EventArgs e) // Ajuste o nome do bot√£o
+        {
+            AbrirGerenciarPokemons();
+        }
+
+        public void AbrirEditarPokemonAdmin(PokemonDTO pokemon)
+        {
+            if (pokemon == null)
+                return;
+            ucEditarPokemon ucEditPoke = new ucEditarPokemon(pokemon, _treinadorLogado, _bll, _pokemonBLL);
+            txtPesquisa.Visible = false;
+        }
+
+        public void AbrirGerenciarPokemons()
+        {
+            ucGerenciarPokemons uc = new ucGerenciarPokemons(_bll, _pokemonBLL, _treinadorLogado);
+            AbrirUserControl(uc);
+            txtPesquisa.Visible = true;
+            txtPesquisa.PlaceholderText = "Pesquisar Pok√©mon por ID, Nome ou Apelido...";
+            txtPesquisa.Clear();
         }
     }
 }

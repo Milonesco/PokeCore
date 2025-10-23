@@ -229,6 +229,7 @@
             pbFoto.Name = "pbFoto";
             pbFoto.ShadowDecoration.CustomizableEdges = customizableEdges8;
             pbFoto.Size = new Size(235, 166);
+            pbFoto.SizeMode = PictureBoxSizeMode.Zoom;
             pbFoto.TabIndex = 3;
             pbFoto.TabStop = false;
             pbFoto.Click += pbFoto_Click;

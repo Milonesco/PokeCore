@@ -1,6 +1,3 @@
-﻿using BCrypt.Net;
-using BCryptLib = BCrypt.Net.BCrypt;
-
 namespace PokeCore.Utils
 {
     public class PasswordHelper

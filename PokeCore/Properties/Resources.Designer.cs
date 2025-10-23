@@ -103,6 +103,16 @@ namespace PokeCore.DesktopUI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap avatar {
+            get {
+                object obj = ResourceManager.GetObject("avatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);
@@ -223,6 +233,16 @@ namespace PokeCore.DesktopUI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pikachu {
+            get {
+                object obj = ResourceManager.GetObject("pikachu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap poke_logo {
             get {
                 object obj = ResourceManager.GetObject("poke_logo", resourceCulture);
@@ -256,6 +276,16 @@ namespace PokeCore.DesktopUI.Properties {
         internal static System.Drawing.Bitmap poke_logo1 {
             get {
                 object obj = ResourceManager.GetObject("poke_logo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap running_shoes {
+            get {
+                object obj = ResourceManager.GetObject("running-shoes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

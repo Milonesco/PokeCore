@@ -1,8 +1,5 @@
-﻿using PokeCore.BLL;
+using PokeCore.BLL;
 using PokeCore.DTO;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace PokeCore.DesktopUI
 {
@@ -48,7 +45,7 @@ namespace PokeCore.DesktopUI
                 {
                     ucPokemonIcon icon = new ucPokemonIcon();
                     icon.SetPokemon(pokemon);
-
+                    icon.ShowNameLabel = true;
                     icon.Click += PokemonIcon_Click;
                     flpActiveTeam.Controls.Add(icon);
                 }
@@ -57,6 +54,7 @@ namespace PokeCore.DesktopUI
                 {
                     ucPokemonIcon icon = new ucPokemonIcon();
                     icon.SetPokemon(pokemon);
+                    icon.ShowNameLabel = false;
                     icon.Click += PokemonIcon_Click;
                     flpPcBox.Controls.Add(icon);
                 }
@@ -110,7 +108,8 @@ namespace PokeCore.DesktopUI
 
         private void BtnMoverParaTime_Click(object sender, EventArgs e)
         {
-            if (_pokemonSelecionado == null) return;
+            if (_pokemonSelecionado == null)
+                return;
 
             try
             {
@@ -125,7 +124,8 @@ namespace PokeCore.DesktopUI
 
         private void BtnMoverParaPC_Click(object sender, EventArgs e)
         {
-            if (_pokemonSelecionado == null) return;
+            if (_pokemonSelecionado == null)
+                return;
 
             try
             {
@@ -140,7 +140,8 @@ namespace PokeCore.DesktopUI
 
         private void BtnLiberarPokemon_Click(object sender, EventArgs e)
         {
-            if (_pokemonSelecionado == null) return;
+            if (_pokemonSelecionado == null)
+                return;
 
             string nome = !string.IsNullOrEmpty(_pokemonSelecionado.Nickname) ? _pokemonSelecionado.Nickname : _pokemonSelecionado.Nome;
             var confirm = MessageBox.Show($"Tem certeza que deseja liberar {nome}?\nEsta ação não pode ser desfeita.", "Confirmar Liberação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -162,7 +163,8 @@ namespace PokeCore.DesktopUI
 
         private void BtnEditarPokemon_Click(object sender, EventArgs e)
         {
-            if (_pokemonSelecionado == null) return;
+            if (_pokemonSelecionado == null)
+                return;
 
             OnEditarPokemonRequisitado?.Invoke(_pokemonSelecionado);
         }

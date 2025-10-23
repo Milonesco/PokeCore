@@ -153,13 +153,13 @@ namespace PokeCore.BLL
             if (string.IsNullOrWhiteSpace(dadosAtualizados.DisplayName))
                 throw new ArgumentException("Nome de exibição é obrigatório.");
 
-            TreinadorDTO checkUsername = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Username); 
+            TreinadorDTO checkUsername = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Username);
             if (checkUsername != null && checkUsername.Id != dadosAtualizados.Id)
             {
                 throw new Exception("Este nome de usuário já está em uso por outra conta.");
             }
 
-            TreinadorDTO checkEmail = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Email); 
+            TreinadorDTO checkEmail = _treinadorRepository.FindByLoginIdentifier(dadosAtualizados.Email);
             if (checkEmail != null && checkEmail.Id != dadosAtualizados.Id)
             {
                 throw new Exception("Este e-mail já está em uso por outra conta.");
@@ -339,7 +339,7 @@ namespace PokeCore.BLL
             treinadorOriginal.DisplayName = dadosAtualizados.DisplayName;
             treinadorOriginal.Email = dadosAtualizados.Email;
             treinadorOriginal.IsAdmin = dadosAtualizados.IsAdmin;
-            treinadorOriginal.FotoPath = dadosAtualizados.FotoPath; 
+            treinadorOriginal.FotoPath = dadosAtualizados.FotoPath;
 
 
             _treinadorRepository.Update(treinadorOriginal);

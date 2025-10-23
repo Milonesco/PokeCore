@@ -341,25 +341,32 @@ namespace PokeCore.DesktopUI
             try
             {
                 string fotoPathFinal = txtFotoCaminhoAtual.Text;
+                string caminhoFotoRelativo = fotoPathFinal;
 
-                if (!string.IsNullOrEmpty(txtFotoCaminhoNovo.Text) && pbFoto.Image != null)
+                if (!string.IsNullOrEmpty(caminhoFotoSelecionadaOriginal) && pbFoto.Image != null)
                 {
                     if (!Directory.Exists(diretorioFotos))
                     {
                         Directory.CreateDirectory(diretorioFotos);
                     }
 
-                    string extensao = Path.GetExtension(txtFotoCaminhoNovo.Text);
+                    string extensao = Path.GetExtension(caminhoFotoSelecionadaOriginal);
                     string nomeArquivoUnico = $"{Guid.NewGuid()}{extensao}";
-                    string caminhoFotoRelativo = Path.Combine("data", "fotos", nomeArquivoUnico);
+                    caminhoFotoRelativo = Path.Combine("data", "fotos", nomeArquivoUnico);
+
                     caminhoFotoSalva = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, caminhoFotoRelativo);
 
-                    pbFoto.Image.Save(caminhoFotoSalva, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    fotoPathFinal = caminhoFotoSalva;
-
-                    if (!string.IsNullOrEmpty(txtFotoCaminhoAtual.Text) && File.Exists(txtFotoCaminhoAtual.Text) && txtFotoCaminhoAtual.Text != "img/poke_logo_colored.png")
+                    using (Bitmap bmpParaSalvar = new Bitmap(pbFoto.Image))
                     {
-                        try { File.Delete(txtFotoCaminhoAtual.Text); } catch { }
+                        bmpParaSalvar.Save(caminhoFotoSalva, ImageFormat.Png);
+                    }
+
+                    fotoPathFinal = caminhoFotoRelativo;
+
+                    string caminhoAntigoAbsoluto = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, txtFotoCaminhoAtual.Text ?? "");
+                    if (!string.IsNullOrEmpty(txtFotoCaminhoAtual.Text) && File.Exists(caminhoAntigoAbsoluto) && !txtFotoCaminhoAtual.Text.Contains("poke_logo_colored.png"))
+                    {
+                        try { File.Delete(caminhoAntigoAbsoluto); } catch (Exception exDel) { Console.WriteLine($"Erro ao deletar foto antiga: {exDel.Message}"); }
                     }
                 }
                 // --- Fim da Lógica da Foto ---
@@ -372,12 +379,10 @@ namespace PokeCore.DesktopUI
                     DisplayName = txtDisplayName.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
                     IsAdmin = chkIsAdmin.Checked,
-                    FotoPath = fotoPathFinal,
+                    FotoPath = fotoPathFinal
                 };
 
-
                 _bll.AdminUpdateTreinadorProfile(_adminLogado.Id, treinadorAtualizado);
-
                 MessageBox.Show($"Treinador '{treinadorAtualizado.Username}' atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LimparCamposEdicao();
@@ -391,7 +396,7 @@ namespace PokeCore.DesktopUI
             {
                 MessageBox.Show("Erro ao atualizar treinador: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                if (!string.IsNullOrEmpty(caminhoFotoSalva) && caminhoFotoSalva != txtFotoCaminhoAtual.Text && File.Exists(caminhoFotoSalva))
+                if (!string.IsNullOrEmpty(caminhoFotoSalva) && caminhoFotoSalva != Path.Combine(AppDomain.CurrentDomain.BaseDirectory, txtFotoCaminhoAtual.Text ?? "") && File.Exists(caminhoFotoSalva))
                 {
                     try { File.Delete(caminhoFotoSalva); } catch { }
                 }
@@ -416,6 +421,28 @@ namespace PokeCore.DesktopUI
             }
 
             currencyManager.ResumeBinding();
+        }
+
+        private void dgvTreinadores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            try
+            {
+                int treinadorId = (int)dgvTreinadores.Rows[e.RowIndex].Cells["colId"].Value;
+
+                TreinadorDTO treinadorAlvo = _bll.GetTreinadorById(treinadorId);
+
+                frmMain mainForm = this.ParentForm as frmMain;
+                if (mainForm != null)
+                {
+                    mainForm.AbrirGerenciadorTreinador(_adminLogado, treinadorAlvo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao selecionar treinador: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

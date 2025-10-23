@@ -1,4 +1,4 @@
-﻿namespace PokeCore.DesktopUI
+namespace PokeCore.DesktopUI
 {
     partial class ucEditarTime
     {
@@ -28,70 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             flpPcBox = new FlowLayoutPanel();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblTituloPcBox = new Guna.UI2.WinForms.Guna2HtmlLabel();
             flpActiveTeam = new FlowLayoutPanel();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblTituloTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pnlAcoes = new Guna.UI2.WinForms.Guna2Panel();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblNomeSelecionado = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnMoverParaTime = new Guna.UI2.WinForms.Guna2Button();
             btnMoverParaPc = new Guna.UI2.WinForms.Guna2Button();
             btnEditarPokemon = new Guna.UI2.WinForms.Guna2Button();
             btnLiberarPokemon = new Guna.UI2.WinForms.Guna2Button();
-            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            flpPcBox.SuspendLayout();
-            flpActiveTeam.SuspendLayout();
             pnlAcoes.SuspendLayout();
             SuspendLayout();
             // 
             // flpPcBox
             // 
-            flpPcBox.Controls.Add(guna2HtmlLabel2);
-            flpPcBox.Location = new Point(0, 220);
+            flpPcBox.Location = new Point(0, 207);
             flpPcBox.Name = "flpPcBox";
-            flpPcBox.Size = new Size(883, 430);
+            flpPcBox.Size = new Size(883, 443);
             flpPcBox.TabIndex = 0;
             // 
-            // guna2HtmlLabel2
+            // lblTituloPcBox
             // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.ForeColor = Color.FromArgb(58, 58, 58);
-            guna2HtmlLabel2.Location = new Point(3, 3);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(72, 27);
-            guna2HtmlLabel2.TabIndex = 0;
-            guna2HtmlLabel2.Text = "PC Box:";
+            lblTituloPcBox.AutoSize = false;
+            lblTituloPcBox.BackColor = Color.Transparent;
+            lblTituloPcBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloPcBox.ForeColor = Color.FromArgb(58, 58, 58);
+            lblTituloPcBox.Location = new Point(0, 178);
+            lblTituloPcBox.Name = "lblTituloPcBox";
+            lblTituloPcBox.Size = new Size(78, 27);
+            lblTituloPcBox.TabIndex = 0;
+            lblTituloPcBox.Text = "PC Box:";
             // 
             // flpActiveTeam
             // 
             flpActiveTeam.BackColor = Color.WhiteSmoke;
-            flpActiveTeam.Controls.Add(guna2HtmlLabel1);
-            flpActiveTeam.Location = new Point(0, 0);
+            flpActiveTeam.Location = new Point(0, 25);
             flpActiveTeam.Name = "flpActiveTeam";
-            flpActiveTeam.Size = new Size(1148, 221);
+            flpActiveTeam.Size = new Size(1148, 147);
             flpActiveTeam.TabIndex = 1;
             // 
-            // guna2HtmlLabel1
+            // lblTituloTime
             // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel1.ForeColor = Color.FromArgb(58, 58, 58);
-            guna2HtmlLabel1.Location = new Point(3, 3);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(103, 27);
-            guna2HtmlLabel1.TabIndex = 0;
-            guna2HtmlLabel1.Text = "Time Ativo:";
+            lblTituloTime.AutoSize = false;
+            lblTituloTime.BackColor = Color.WhiteSmoke;
+            lblTituloTime.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloTime.ForeColor = Color.FromArgb(58, 58, 58);
+            lblTituloTime.Location = new Point(0, 0);
+            lblTituloTime.Name = "lblTituloTime";
+            lblTituloTime.Size = new Size(1148, 29);
+            lblTituloTime.TabIndex = 0;
+            lblTituloTime.Text = "Time Ativo:";
             // 
             // pnlAcoes
             // 
@@ -103,11 +101,21 @@
             pnlAcoes.Controls.Add(btnEditarPokemon);
             pnlAcoes.Controls.Add(btnLiberarPokemon);
             pnlAcoes.CustomizableEdges = customizableEdges9;
-            pnlAcoes.Location = new Point(882, 220);
+            pnlAcoes.Location = new Point(882, 170);
             pnlAcoes.Name = "pnlAcoes";
             pnlAcoes.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            pnlAcoes.Size = new Size(266, 430);
+            pnlAcoes.Size = new Size(266, 480);
             pnlAcoes.TabIndex = 2;
+            // 
+            // guna2HtmlLabel3
+            // 
+            guna2HtmlLabel3.BackColor = Color.Transparent;
+            guna2HtmlLabel3.Font = new Font("Segoe UI", 12F);
+            guna2HtmlLabel3.Location = new Point(7, 10);
+            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            guna2HtmlLabel3.Size = new Size(160, 23);
+            guna2HtmlLabel3.TabIndex = 1;
+            guna2HtmlLabel3.Text = "Pokemon Selecionado:";
             // 
             // lblNomeSelecionado
             // 
@@ -191,30 +199,18 @@
             btnLiberarPokemon.TabIndex = 0;
             btnLiberarPokemon.Text = "Liberar Pokemon";
             // 
-            // guna2HtmlLabel3
-            // 
-            guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Segoe UI", 12F);
-            guna2HtmlLabel3.Location = new Point(7, 10);
-            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(160, 23);
-            guna2HtmlLabel3.TabIndex = 1;
-            guna2HtmlLabel3.Text = "Pokemon Selecionado:";
-            // 
             // ucEditarTime
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.WhiteSmoke;
+            Controls.Add(lblTituloPcBox);
+            Controls.Add(lblTituloTime);
             Controls.Add(pnlAcoes);
-            Controls.Add(flpActiveTeam);
             Controls.Add(flpPcBox);
+            Controls.Add(flpActiveTeam);
             Name = "ucEditarTime";
             Size = new Size(1148, 650);
-            flpPcBox.ResumeLayout(false);
-            flpPcBox.PerformLayout();
-            flpActiveTeam.ResumeLayout(false);
-            flpActiveTeam.PerformLayout();
             pnlAcoes.ResumeLayout(false);
             pnlAcoes.PerformLayout();
             ResumeLayout(false);
@@ -230,8 +226,8 @@
         private Guna.UI2.WinForms.Guna2Button btnEditarPokemon;
         private Guna.UI2.WinForms.Guna2Button btnLiberarPokemon;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblNomeSelecionado;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTituloTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTituloPcBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
     }
 }
