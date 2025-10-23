@@ -15,6 +15,7 @@ namespace PokeCore.DesktopUI
         private PokemonServiceBLL _pokemonBLL;
         private TreinadorDTO _adminLogado;
         private List<TreinadorDTO> _listaTreinadores;
+        private int? _pokemonIdParaEditar = null;
         public ucGerenciarPokemons(TreinadorServiceBLL treinadorBLL, PokemonServiceBLL pokemonBLL, TreinadorDTO adminLogado)
         {
             InitializeComponent();
@@ -101,6 +102,9 @@ namespace PokeCore.DesktopUI
             txtLocalDeCaptura.Clear();
             dtpDataDeCaptura.Value = DateTime.Now;
             cmbTreinador.SelectedIndex = 0;
+            _pokemonIdParaEditar = null;
+
+            btnAdicionar.Text = "Adicionar";
         }
 
         private void LimparCamposExclusao()
@@ -115,37 +119,45 @@ namespace PokeCore.DesktopUI
             try
             {
                 if (string.IsNullOrWhiteSpace(txtNome.Text))
-                {
-                    MessageBox.Show("O nome do Pokémon é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                {}
                 if (!int.TryParse(txtNivel.Text, out int nivel) || nivel <= 0)
-                {
-                    MessageBox.Show("Nível inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                {return;}
+                if (string.IsNullOrWhiteSpace(txtTipo.Text))
+                {return;}
 
-                var novoPokemon = new PokemonDTO
+                var pokemonData = new PokemonDTO
                 {
+                    Id = _pokemonIdParaEditar ?? 0,
                     Nome = txtNome.Text.Trim(),
                     Nivel = nivel,
                     Tipo = txtTipo.Text.Trim(),
                     LocalDeCaptura = txtLocalDeCaptura.Text.Trim(),
                     CapturedAt = dtpDataDeCaptura.Value,
                     Nickname = txtNickname.Text.Trim(),
-                    OwnerId = (int)cmbTreinador.SelectedValue == 0 ? (int?)null : (int)cmbTreinador.SelectedValue,
-                    isInActiveTeam = false
+                    OwnerId = (int)cmbTreinador.SelectedValue == 0 ? (int?)null : (int)cmbTreinador.SelectedValue
                 };
 
-                _pokemonBLL.AdminAddPokemon(_adminLogado.Id, novoPokemon);
+                if (_pokemonIdParaEditar.HasValue)
+                {
+                    PokemonDTO original = _pokemonBLL.GetPokemonById(_pokemonIdParaEditar.Value);
+                    pokemonData.CapturedAt = original.CapturedAt;
 
-                MessageBox.Show("Pokémon adicionado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _pokemonBLL.AdminUpdatePokemon(_adminLogado.Id, pokemonData);
+                    MessageBox.Show("Pokémon atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    _pokemonBLL.AdminAddPokemon(_adminLogado.Id, pokemonData);
+                    MessageBox.Show("Pokémon adicionado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 CarregarPokemonsGrid();
                 LimparCamposAdicao();
+                LimparCamposExclusao();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adicionar Pokémon: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -154,15 +166,33 @@ namespace PokeCore.DesktopUI
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvPokemons.Rows[e.RowIndex];
-                txtIdExcluir.Text = row.Cells["ID"].Value?.ToString() ?? "";
-                txtNomeExcluir.Text = row.Cells["Nome"].Value?.ToString() ?? "";
-                btnExcluir.Enabled = true;
 
-                PokemonDTO pokeSelecionado = _pokemonBLL.GetPokemonById((int)row.Cells["Id"].Value);
+                txtIdExcluir.Text = row.Cells["Id"].Value?.ToString() ?? "";
+                txtNomeExcluir.Text = row.Cells["Nome"].Value?.ToString() ?? "";
+                btnExcluir.Enabled = !string.IsNullOrEmpty(txtIdExcluir.Text);
+
+                try
+                {
+                    if (int.TryParse(txtIdExcluir.Text, out int pokemonId))
+                    {
+                        PokemonDTO pokeSelecionado = _pokemonBLL.GetPokemonById(pokemonId);
+                        PreencherCamposEdicao(pokeSelecionado);
+                    }
+                    else
+                    {
+                        LimparCamposAdicao();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao carregar dados do Pokémon para edição: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimparCamposAdicao();
+                }
             }
             else
             {
                 LimparCamposExclusao();
+                LimparCamposAdicao();
             }
         }
 
@@ -216,13 +246,40 @@ namespace PokeCore.DesktopUI
             }
         }
 
+        private void PreencherCamposEdicao(PokemonDTO pokemon)
+        {
+            if (pokemon == null)
+            {
+                LimparCamposAdicao();
+                return;
+            }
+
+            txtNome.Text = pokemon.Nome;
+            txtNivel.Text = pokemon.Nivel.ToString();
+            txtTipo.Text = pokemon.Tipo;
+            txtLocalDeCaptura.Text = pokemon.LocalDeCaptura;
+            txtNickname.Text = pokemon.Nickname;
+            dtpDataDeCaptura.Value = pokemon.CapturedAt;
+
+            if (pokemon.OwnerId.HasValue)
+            {
+                cmbTreinador.SelectedValue = pokemon.OwnerId.Value;
+            }
+            else
+            {
+                cmbTreinador.SelectedValue = 0;
+            }
+            _pokemonIdParaEditar = pokemon.Id;
+            btnAdicionar.Text = "Atualizar";
+        }
+
         public void PesquisarPokemon(string termo)
         {
             var pokemonsFiltrados = _pokemonBLL.GetAllPokemon()
                 .Where(p => (p.Nome?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
                             (p.Nickname?.IndexOf(termo, StringComparison.OrdinalIgnoreCase) >= 0) ||
                             (p.Id.ToString() == termo))
-                .Select(p => new {})
+                .Select(p => new { })
                 .ToList();
             dgvPokemons.DataSource = pokemonsFiltrados;
         }

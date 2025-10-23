@@ -29,25 +29,25 @@ namespace PokeCore
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            var customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            var customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             panelMenu = new Guna.UI2.WinForms.Guna2Panel();
             pbUsuario = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -55,7 +55,7 @@ namespace PokeCore
             pbConfig = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             btnSair = new Guna.UI2.WinForms.Guna2Button();
             btnGerenciarPokemon = new Guna.UI2.WinForms.Guna2CircleButton();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblGerenciarPokemon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnTreinadores = new Guna.UI2.WinForms.Guna2CircleButton();
             lblTreinadores = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblDisplayName = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -97,7 +97,7 @@ namespace PokeCore
             panelMenu.Controls.Add(pbConfig);
             panelMenu.Controls.Add(btnSair);
             panelMenu.Controls.Add(btnGerenciarPokemon);
-            panelMenu.Controls.Add(guna2HtmlLabel2);
+            panelMenu.Controls.Add(lblGerenciarPokemon);
             panelMenu.Controls.Add(btnTreinadores);
             panelMenu.Controls.Add(lblTreinadores);
             panelMenu.Controls.Add(lblDisplayName);
@@ -107,11 +107,11 @@ namespace PokeCore
             panelMenu.Controls.Add(btnEditarTime);
             panelMenu.Controls.Add(btnPcBox);
             panelMenu.Controls.Add(btnHome);
-            panelMenu.CustomizableEdges = customizableEdges18;
+            panelMenu.CustomizableEdges = customizableEdges29;
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges30;
             panelMenu.Size = new Size(200, 768);
             panelMenu.TabIndex = 0;
             // 
@@ -121,7 +121,7 @@ namespace PokeCore
             pbUsuario.ImageRotate = 0F;
             pbUsuario.Location = new Point(33, 17);
             pbUsuario.Name = "pbUsuario";
-            pbUsuario.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            pbUsuario.ShadowDecoration.CustomizableEdges = customizableEdges20;
             pbUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbUsuario.Size = new Size(128, 128);
             pbUsuario.SizeMode = PictureBoxSizeMode.Zoom;
@@ -144,7 +144,7 @@ namespace PokeCore
             pbConfig.ImageRotate = 0F;
             pbConfig.Location = new Point(159, 12);
             pbConfig.Name = "pbConfig";
-            pbConfig.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            pbConfig.ShadowDecoration.CustomizableEdges = customizableEdges21;
             pbConfig.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbConfig.Size = new Size(32, 32);
             pbConfig.SizeMode = PictureBoxSizeMode.Zoom;
@@ -155,7 +155,7 @@ namespace PokeCore
             // btnSair
             // 
             btnSair.Cursor = Cursors.Hand;
-            btnSair.CustomizableEdges = customizableEdges11;
+            btnSair.CustomizableEdges = customizableEdges22;
             btnSair.DisabledState.BorderColor = Color.DarkGray;
             btnSair.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSair.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -165,7 +165,7 @@ namespace PokeCore
             btnSair.ForeColor = Color.White;
             btnSair.Location = new Point(11, 702);
             btnSair.Name = "btnSair";
-            btnSair.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnSair.ShadowDecoration.CustomizableEdges = customizableEdges23;
             btnSair.Size = new Size(180, 45);
             btnSair.TabIndex = 2;
             btnSair.Text = "Sair";
@@ -189,24 +189,24 @@ namespace PokeCore
             btnGerenciarPokemon.ImageSize = new Size(40, 40);
             btnGerenciarPokemon.Location = new Point(58, 599);
             btnGerenciarPokemon.Name = "btnGerenciarPokemon";
-            btnGerenciarPokemon.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            btnGerenciarPokemon.ShadowDecoration.CustomizableEdges = customizableEdges24;
             btnGerenciarPokemon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnGerenciarPokemon.Size = new Size(64, 64);
             btnGerenciarPokemon.TabIndex = 3;
             btnGerenciarPokemon.Click += btnGerenciarPokemon_Click;
             // 
-            // guna2HtmlLabel2
+            // lblGerenciarPokemon
             // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Enabled = false;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 10F);
-            guna2HtmlLabel2.ForeColor = Color.White;
-            guna2HtmlLabel2.Location = new Point(62, 669);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(57, 19);
-            guna2HtmlLabel2.TabIndex = 3;
-            guna2HtmlLabel2.TabStop = false;
-            guna2HtmlLabel2.Text = "Pokemon";
+            lblGerenciarPokemon.BackColor = Color.Transparent;
+            lblGerenciarPokemon.Enabled = false;
+            lblGerenciarPokemon.Font = new Font("Segoe UI", 10F);
+            lblGerenciarPokemon.ForeColor = Color.White;
+            lblGerenciarPokemon.Location = new Point(62, 669);
+            lblGerenciarPokemon.Name = "lblGerenciarPokemon";
+            lblGerenciarPokemon.Size = new Size(57, 19);
+            lblGerenciarPokemon.TabIndex = 3;
+            lblGerenciarPokemon.TabStop = false;
+            lblGerenciarPokemon.Text = "Pokemon";
             // 
             // btnTreinadores
             // 
@@ -226,7 +226,7 @@ namespace PokeCore
             btnTreinadores.ImageSize = new Size(40, 40);
             btnTreinadores.Location = new Point(58, 504);
             btnTreinadores.Name = "btnTreinadores";
-            btnTreinadores.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnTreinadores.ShadowDecoration.CustomizableEdges = customizableEdges25;
             btnTreinadores.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnTreinadores.Size = new Size(64, 64);
             btnTreinadores.TabIndex = 3;
@@ -314,7 +314,7 @@ namespace PokeCore
             btnEditarTime.ImageSize = new Size(40, 40);
             btnEditarTime.Location = new Point(58, 396);
             btnEditarTime.Name = "btnEditarTime";
-            btnEditarTime.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            btnEditarTime.ShadowDecoration.CustomizableEdges = customizableEdges26;
             btnEditarTime.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnEditarTime.Size = new Size(64, 64);
             btnEditarTime.TabIndex = 2;
@@ -338,7 +338,7 @@ namespace PokeCore
             btnPcBox.ImageSize = new Size(40, 40);
             btnPcBox.Location = new Point(58, 292);
             btnPcBox.Name = "btnPcBox";
-            btnPcBox.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnPcBox.ShadowDecoration.CustomizableEdges = customizableEdges27;
             btnPcBox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnPcBox.Size = new Size(64, 64);
             btnPcBox.TabIndex = 1;
@@ -362,7 +362,7 @@ namespace PokeCore
             btnHome.ImageSize = new Size(40, 40);
             btnHome.Location = new Point(58, 190);
             btnHome.Name = "btnHome";
-            btnHome.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            btnHome.ShadowDecoration.CustomizableEdges = customizableEdges28;
             btnHome.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnHome.Size = new Size(64, 64);
             btnHome.TabIndex = 0;
@@ -389,7 +389,7 @@ namespace PokeCore
             btnEditarPokemon.ForeColor = Color.White;
             btnEditarPokemon.Location = new Point(3, 577);
             btnEditarPokemon.Name = "btnEditarPokemon";
-            btnEditarPokemon.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnEditarPokemon.ShadowDecoration.CustomizableEdges = customizableEdges31;
             btnEditarPokemon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnEditarPokemon.Size = new Size(64, 64);
             btnEditarPokemon.TabIndex = 1;
@@ -402,11 +402,11 @@ namespace PokeCore
             panelTitle.Controls.Add(guna2HtmlLabel1);
             panelTitle.Controls.Add(txtPesquisa);
             panelTitle.Controls.Add(guna2HtmlLabel3);
-            panelTitle.CustomizableEdges = customizableEdges7;
+            panelTitle.CustomizableEdges = customizableEdges35;
             panelTitle.Dock = DockStyle.Top;
             panelTitle.Location = new Point(200, 0);
             panelTitle.Name = "panelTitle";
-            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges36;
             panelTitle.Size = new Size(1166, 100);
             panelTitle.TabIndex = 1;
             // 
@@ -418,7 +418,7 @@ namespace PokeCore
             guna2CirclePictureBox1.ImageRotate = 0F;
             guna2CirclePictureBox1.Location = new Point(13, 20);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges32;
             guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CirclePictureBox1.Size = new Size(64, 64);
             guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -440,7 +440,7 @@ namespace PokeCore
             // 
             txtPesquisa.BorderRadius = 15;
             txtPesquisa.Cursor = Cursors.IBeam;
-            txtPesquisa.CustomizableEdges = customizableEdges5;
+            txtPesquisa.CustomizableEdges = customizableEdges33;
             txtPesquisa.DefaultText = "";
             txtPesquisa.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPesquisa.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -453,7 +453,7 @@ namespace PokeCore
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "Pesquisa";
             txtPesquisa.SelectedText = "";
-            txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges34;
             txtPesquisa.Size = new Size(600, 36);
             txtPesquisa.TabIndex = 4;
             txtPesquisa.Visible = false;
@@ -472,10 +472,10 @@ namespace PokeCore
             // 
             panelConteudo.Controls.Add(btnEditarPokemon);
             panelConteudo.Controls.Add(lblEditarPokemon);
-            panelConteudo.CustomizableEdges = customizableEdges2;
+            panelConteudo.CustomizableEdges = customizableEdges37;
             panelConteudo.Location = new Point(206, 106);
             panelConteudo.Name = "panelConteudo";
-            panelConteudo.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            panelConteudo.ShadowDecoration.CustomizableEdges = customizableEdges38;
             panelConteudo.Size = new Size(1148, 650);
             panelConteudo.TabIndex = 2;
             // 
@@ -546,6 +546,6 @@ namespace PokeCore
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2CircleButton btnGerenciarPokemon;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblGerenciarPokemon;
     }
 }

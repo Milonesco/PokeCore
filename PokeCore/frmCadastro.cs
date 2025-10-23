@@ -1,4 +1,4 @@
-﻿using PokeCore.BLL;
+using PokeCore.BLL;
 using System.Drawing.Imaging;
 
 namespace PokeCore.DesktopUI

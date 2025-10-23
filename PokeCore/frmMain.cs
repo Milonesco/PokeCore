@@ -202,6 +202,8 @@ namespace PokeCore
                     }
                 }
 
+                btnGerenciarPokemon.Visible = _treinadorLogado.IsAdmin;
+                lblGerenciarPokemon.Visible = _treinadorLogado.IsAdmin;
                 btnTreinadores.Visible = _treinadorLogado.IsAdmin;
                 lblTreinadores.Visible = _treinadorLogado.IsAdmin;
             }

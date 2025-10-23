@@ -184,6 +184,7 @@ namespace PokeCore.DesktopUI
             btnLimpar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLimpar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnLimpar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpar.FillColor = Color.FromArgb(58, 58, 58);
             btnLimpar.Font = new Font("Segoe UI", 9F);
             btnLimpar.ForeColor = Color.White;
             btnLimpar.Location = new Point(188, 591);
@@ -218,6 +219,7 @@ namespace PokeCore.DesktopUI
             btnAdicionar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAdicionar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnAdicionar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAdicionar.FillColor = Color.Blue;
             btnAdicionar.Font = new Font("Segoe UI", 9F);
             btnAdicionar.ForeColor = Color.White;
             btnAdicionar.Location = new Point(17, 591);
@@ -403,6 +405,8 @@ namespace PokeCore.DesktopUI
             dgvPokemons.ThemeStyle.RowsStyle.Height = 25;
             dgvPokemons.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvPokemons.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvPokemons.CellClick += dgvPokemons_CellClick;
+            dgvPokemons.CellDoubleClick += dgvPokemons_CellDoubleClick;
             // 
             // txtNomeExcluir
             // 
@@ -449,6 +453,7 @@ namespace PokeCore.DesktopUI
             btnExcluir.DisabledState.CustomBorderColor = Color.DarkGray;
             btnExcluir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnExcluir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnExcluir.FillColor = Color.FromArgb(221, 23, 58);
             btnExcluir.Font = new Font("Segoe UI", 9F);
             btnExcluir.ForeColor = Color.White;
             btnExcluir.Location = new Point(612, 69);

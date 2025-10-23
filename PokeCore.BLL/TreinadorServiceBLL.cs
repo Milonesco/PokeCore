@@ -1,4 +1,4 @@
-﻿using PokeCore.DAL;
+using PokeCore.DAL;
 using PokeCore.DTO;
 using PokeCore.Utils;
 
@@ -80,6 +80,7 @@ namespace PokeCore.BLL
                 DisplayName = displayName,
                 FotoPath = fotoPath,
                 Password = password,
+                CreatedAt = DateTime.Now,
                 IsAdmin = false
             };
 
